@@ -3,10 +3,6 @@ const hbs     = require('hbs');
 const path    = require('path');
 const mongoose = require('mongoose');
 
-const app = express();
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
-app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost/movies', { useNewUrlParser: true });
 let db = mongoose.connection;
@@ -20,6 +16,7 @@ db.on('error', (err) => {
     console.log(err);
 })
 
+const app = express();
 
 /* GET home page */
 app.get('/', (req, res) => {
