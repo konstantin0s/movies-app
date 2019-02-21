@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/konstantin0s/movies-app/issues"
   },
-  "homepage": "https://github.com/konstantin0s/movies-app#readme"
+  "homepage": "https://github.com/konstantin0s/movies-app#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
