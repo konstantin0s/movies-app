@@ -1,0 +1,123 @@
+.body {
+background-image: url('../images/cinema.jpg') ;
+background-position: center center;
+background-repeat:  no-repeat;
+background-attachment: fixed;
+background-size:  cover;
+background-color: #999;
+ height: 100%;
+}
+
+/* .container{
+  height: 100vh;
+  width:100vw;
+} */
+
+.body {
+  /* height: 2000px; */
+  height: 100%;
+  width: 100%;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #0099E6;
+  color: white;
+  text-align: center;
+  }
+
+  .form-control {
+    width: 20%;
+  }
+
+  .container {
+    position: relative;
+    top: 150px;
+    height: 100%;
+    padding-bottom: 150px;
+  }
+
+.titles {
+  color: white;
+  position: absolute;
+  top: 200px;
+  left: 350px;
+}
+
+  .button {
+    position: absolute;
+    top: 300px;
+    left: 350px;
+    background-color: gainsboro;
+    border: none;
+    color: white;
+    padding: 15px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+
+  .images a{
+    color: black;
+  }
+
+  /* .img-db {
+    width: 30%;
+    height: 25%;
+   margin: auto;
+  } */
+
+  .list-group-item {
+    position: relative;
+   text-align: center;
+     width: 100%;
+     padding: 3px;
+  }
+
+  li {
+    list-style: none;
+    padding: 3px;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vh;
+    width: 100%
+  }
+
+ .card {
+    width: 25%;
+    margin: 15px;
+  } 
+ 
+  .movie-card {
+  position: relative;
+  width: 80%;
+  height: 70%;
+    left: 15%;
+    background-color: aliceblue;
+    padding: 3px;
+  } 
+
+  .imgDetails {
+    position: relative;
+    /* left: 35%; */
+    width: 45%;
+    margin: 5px;
+  }
+
+h2, h3, h4 {
+  margin: 20px 3px;
+}
+
+h1 {
+  position: relative;
+  left: 35%;
+  color: white
+}

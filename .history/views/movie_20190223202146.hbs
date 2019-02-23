@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>Details of the Movie:</h1>
+
+  <div class="cards">
+    <div class="card">
+      <h2>Title: {{movie.title}}</h2>   
+      <h3>Director: {{movie.director}}</h3>
+      Stars: <li>{{movie.stars}}</li>
+        <img class="imgDetails" src="{{movie.image}}" alt="">
+        <h4>{{movie.description}}</h4>
+        Showtime: <ul>
+               <li>{{movie.showtimes}}</li>
+               </ul>
+     <button class="btn btn-default"> <a href="/recipe/edit/{{movie.id}}">Edit</a></button>
+      <a href="#" class="btn btn-danger delete-recipe" data-id="{{movie.id}}">Delete</a>
+    </div>
+</body>
+</html>
