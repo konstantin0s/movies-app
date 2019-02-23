@@ -24,7 +24,7 @@ db.on('error', (err) => {
 /* GET home page */
 const index = require('./routes/index');
 app.use('/', index);
-
+/
 /*Get movies page */
 const moviesP = require('./routes/movies');
 app.use('/', moviesP);

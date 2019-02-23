@@ -24,10 +24,10 @@ db.on('error', (err) => {
 /* GET home page */
 const index = require('./routes/index');
 app.use('/', index);
-
+/
 /*Get movies page */
-const moviesP = require('./routes/movies');
-app.use('/', moviesP);
+const movies = require('./routes/movies');
+app.use('/', movies);
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');

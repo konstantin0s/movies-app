@@ -25,9 +25,6 @@ db.on('error', (err) => {
 const index = require('./routes/index');
 app.use('/', index);
 
-/*Get movies page */
-const moviesP = require('./routes/movies');
-app.use('/', moviesP);
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');
