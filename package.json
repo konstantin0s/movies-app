@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,12 @@
   },
   "homepage": "https://github.com/konstantin0s/movies-app#readme",
   "dependencies": {
+    "async": "^3.2.0",
     "body-parser": "^1.18.3",
+    "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "hbs": "^4.0.2",
+    "hbs": "^4.1.0",
+    "mongodb": "^3.5.5",
     "mongoose": "^5.4.14",
     "nodemon": "^1.18.10",
     "path": "^0.12.7"

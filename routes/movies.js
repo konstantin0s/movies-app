@@ -13,6 +13,7 @@ router.get('/movies', (req, res, next) => {
     } else {
       res.render('movies',
       {movies: movies});
+      console.log('ecoo', movies);
     }
     
   });
