@@ -2,17 +2,24 @@ const express = require('express');
 const hbs     = require('hbs');
 const path    = require('path');
 const mongoose = require('mongoose');
-let Movie = require('./models/Movie');
 
 require('dotenv').config();
 
 const app = express();
+
+
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(bodyParser.urlencoded({
+//   extended: false
+// }));
+// app.use(bodyParser.json());
+
+
 // mongo db atlas - with the thisisthesunrise@gmail.com account
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
@@ -22,17 +29,6 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
   
-
-let db = mongoose.connection;
-
-//check connection
-db.once('open', () => {
-  console.log('Connected to MongoDb');
-});
-
-db.on('error', (err) => {
-    console.log(err);
-})
 
 
 /* GET home page */
