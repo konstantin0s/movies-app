@@ -1,0 +1,12 @@
+.MuiTypography-h6 a,
+.MuiButton-label a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFF;
+}
+
+
+.MuiTypography-h6 a:hover,
+.MuiButton-label a:hover {
+    color: rgb(230, 209, 29);
+}

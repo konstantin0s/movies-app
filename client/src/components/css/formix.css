@@ -1,0 +1,24 @@
+.addArticle .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    position: relative;
+    /* top: -13px; */
+}
+
+
+.custom-file-upload:hover {
+    transform: scale(1.1);
+    color: #174db1;
+    cursor: pointer;
+}
+
+.cardz .addPic {
+    position: relative;
+    /* top: 220px; */
+}
+
+input[type="file"] {
+    display: none;
+}

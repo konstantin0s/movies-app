@@ -5,6 +5,7 @@
   import RaisedButton from 'material-ui/RaisedButton';
   import TextField from 'material-ui/TextField';
   import { TextareaAutosize } from '@material-ui/core';
+  import './css/formix.css';
 // import { withStyles } from 'material-ui/core/styles';
 
 
