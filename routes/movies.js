@@ -7,18 +7,15 @@ let Movies = require('../models/Movie');
 /* GET movies page */
 router.get('/movies', (req, res, next) => {
 
-
-  Movies.find({}, (err, movies) => {
-    if (err) {
-      console.log(err);
-    } else {
-   
-        res.render('movies',
-        {movies: movies});
-    console.log('movies rouyter', movies);
-    }
-    
-  });
+  Movies.find()
+  .sort({ date: -1 })
+  .then((movies) => {
+    res.json(movies);
+  })
+  .catch(err => {
+    res.json(err);
+  })
+ 
 });
 
 module.exports = router;

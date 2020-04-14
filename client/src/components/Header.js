@@ -32,10 +32,10 @@ export default function Header() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-           <Link to="/"> SuperStar</Link>
+           <Link to="/"> MoviePlex</Link>
           </Typography>
           <Button color="inherit">
-<Link to="/movies">MoviePlex</Link>
+<Link to="/add">Add Movies</Link>
           </Button>
         </Toolbar>
       </AppBar>
