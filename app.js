@@ -2,6 +2,7 @@ const express = require('express');
 const hbs     = require('hbs');
 const path    = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
@@ -12,10 +13,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(bodyParser.urlencoded({
-//   extended: false
-// }));
-// app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
 
 
 // mongo db atlas - with the thisisthesunrise@gmail.com account
@@ -42,6 +44,9 @@ app.use('/', moviesP);
 /*Get singe movie page */
 const movieP = require('./routes/movie');
 app.use('/', movieP);
+
+//upload router
+app.use('/', require('./routes/upload'));
 
 
 app.listen(process.env.PORT || 5000, () => {

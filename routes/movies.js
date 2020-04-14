@@ -1,13 +1,13 @@
 const express = require('express');
 const router  = express.Router();
-let Movies = require('../models/Movie');
+let Movie = require('../models/Movie');
 
 
 
 /* GET movies page */
 router.get('/movies', (req, res, next) => {
 
-  Movies.find()
+  Movie.find()
   .sort({ date: -1 })
   .then((movies) => {
     res.json(movies);
@@ -19,7 +19,7 @@ router.get('/movies', (req, res, next) => {
 });
 
 //add submit POST route
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
   debugger
   const today = new Date();
   const newMovie = new Movie({
@@ -31,6 +31,7 @@ router.post('/', (req, res) => {
     showtimes: req.body.showtimes,
     created: today
   }); 
+  console.log(newMovie)
   debugger
   newMovie.save().then(movie => res.json(movie))
    .catch(err => {

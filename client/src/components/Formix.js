@@ -1,4 +1,5 @@
   import React, {Component} from 'react';
+  import { Redirect} from "react-router-dom";
   import { faUpload } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
   import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -7,7 +8,7 @@
   import { TextareaAutosize } from '@material-ui/core';
   import './css/formix.css';
   import { movies } from './HelperFunctions';
-  import {handleUpload} from './UserFunctions';
+  import {handleUpload} from './HelperFunctions';
 // import { withStyles } from 'material-ui/core/styles';
 
 
@@ -45,6 +46,9 @@ const textFieldx = {
       error: null
      }
 
+     this.handleFileUpload = this.handleFileUpload.bind(this);
+     this.onChange = this.onChange.bind(this);
+
    }
 
    onChange(e) {
@@ -60,7 +64,7 @@ handleFileUpload(e) {
   const uploadData = new FormData();
   // imageUrl => this name has to be the same as in the model since we pass
   // req.body to .create() method when creating a new thing in '/api/things/create' POST route
-  uploadData.append("imageUrl", e.target.files[0]);
+  uploadData.append("image", e.target.files[0]);
   
   handleUpload(uploadData)
   .then(response => {
@@ -89,9 +93,12 @@ handleFileUpload(e) {
     }
     console.log(movie);
 
-    movies(movie).then(res => {
-         this.props.history.push('/movies');
-    })
+    movies(movie).then(res =>  (
+        //  this.props.history.push('/movies');
+        <Redirect to={{ pathname: '/movies'}} />  
+    )
+      
+    )
 }
 
 
@@ -105,37 +112,44 @@ handleFileUpload(e) {
 <React.Fragment>
 <form className={containerX} onSubmit={this.handleSubmit}>
             <div>
-              <TextField type="text" name="title" placeholder="Title" label="Title"/>
+              <TextField type="text" name="title" 
+              placeholder="Title" onChange={this.onChange}
+              />
             </div>
             <div>
-              <TextField type="text" name="director" placeholder="Director" label="Director"/>
+              <TextField type="text" name="director" placeholder="Director"   onChange={this.onChange}
+               />
             </div>
             <div>
             <label className="custom-file-upload">
              Image <FontAwesomeIcon icon={faUpload} />
-             <input type="file" className="btn btn-warning addPic" onChange={(e) => this.handleFileUpload(e)} /> 
+             <input type="file" name="image" className="btn btn-warning addPic"
+              onChange={(e) => this.handleFileUpload(e)}
+              /> 
                   </label>
               </div> 
             <div>
-              <TextField type="text" name="stars" placeholder="Stars" label="Stars"/>
+              <TextField type="text" name="stars" placeholder="Stars" onChange={this.onChange}
+               />
             </div>
+            
 
             <div>
             <TextareaAutosize aria-label="minimum height" type="text" name="description"
-             rowsMin={3} placeholder="Add Description" />
+             rowsMin={3} placeholder="Add Description"   onChange={this.onChange}/>
             
             </div>
+
             <div>
             <TextField
     id="date"
-    label="ShowTime"
-    type="date"
+    type="text"
     defaultValue="2017-05-24"
     className={textFieldx}
     InputLabelProps={{
       shrink: true,
     }}
-  />
+    onChange={this.onChange}/>
             </div>
         
             <div>

@@ -20,7 +20,7 @@ export default function Footer() {
 
     
         return (
-            <BottomNavigation className={classes.root} label="Footer">
+            <BottomNavigation className={classes.root}>
     <p> 
          MoviePlex &copy; Copyright 2020
        </p>
