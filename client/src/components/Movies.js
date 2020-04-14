@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 import axios from 'axios';
+import './css/movies.css';
 
  class Movies extends Component {
      constructor(props) {
@@ -37,7 +39,7 @@ import axios from 'axios';
         return (
             <div className="movies-container">
 
-{          isLoading ? <p>Loading...</p> :
+{          isLoading ? <Loading /> :
 
 
 movies.map((movie) =>   
