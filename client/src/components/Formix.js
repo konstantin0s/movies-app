@@ -3,6 +3,7 @@
   import { faUpload } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
   import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+  import Paper from '@material-ui/core/Paper';
   import RaisedButton from 'material-ui/RaisedButton';
   import TextField from 'material-ui/TextField';
   import { TextareaAutosize } from '@material-ui/core';
@@ -110,6 +111,7 @@ handleFileUpload(e) {
 
         <MuiThemeProvider>
 <React.Fragment>
+<Paper  elevation={3} >
 <form className={containerX} onSubmit={this.handleSubmit}>
             <div>
               <TextField type="text" name="title" 
@@ -156,6 +158,7 @@ handleFileUpload(e) {
               <RaisedButton type="submit" label="Submit" primary={true} style={style}/>
             </div>
           </form>
+</Paper>
 </React.Fragment>
       </MuiThemeProvider>
 

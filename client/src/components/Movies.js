@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
+import Movie from './Movie';
 import axios from 'axios';
 import './css/movies.css';
 
@@ -43,20 +44,22 @@ import './css/movies.css';
 
 
 movies.map((movie) =>   
-<div className="card text-center" key={movie._id}>
+<Movie id={movie._id} movie={movie} />
+
+/* <div className="card text-center" key={movie._id}>
   <div className="card-body">
     <img alt="Movie" className="movie-img" src={movie.image} />
     <h2 className="card-title">{movie.title}</h2>
     {/* <p className="description">
         {movie.description}
-    </p> */}
+    </p> 
   </div>
-   <span className="artLink">  <Link className="btn btn-primary linkz" to={`/show/${movie._id}`}>Read MORE...</Link></span>
+   <span className="artLink">  <Link className="btn btn-primary linkz" to={`/one/${movie._id}`}>Read MORE...</Link></span>
   <div className="card-footer text-muted">
-   {/* <span> Posted: {Moment(article.date.dateFrom).format('YYYY-MM-DD')}</span> */}
+   {/* <span> Posted: {Moment(article.date.dateFrom).format('YYYY-MM-DD')}</span> 
   </div>
 
-</div>
+</div> */
 )}
               
 

@@ -18,6 +18,21 @@ router.get('/movies', (req, res, next) => {
  
 });
 
+//one movie
+router.get("/one/:id", (req,res)=> {
+  debugger
+  Movie.findById(req.params.id)
+    .then((result)=>{
+      debugger
+      res.status(200).json(result)
+      console.log(result)
+    })
+    .catch((error)=> {
+      res.status(500).json(error)
+      debugger
+    })
+})
+
 //add submit POST route
 router.post('/add', (req, res) => {
   debugger
