@@ -6,6 +6,8 @@
   import TextField from 'material-ui/TextField';
   import { TextareaAutosize } from '@material-ui/core';
   import './css/formix.css';
+  import { movies } from './HelperFunctions';
+  import {handleUpload} from './UserFunctions';
 // import { withStyles } from 'material-ui/core/styles';
 
 
@@ -32,14 +34,66 @@ const textFieldx = {
    constructor(props) {
      super(props);
 
+     this.state = {
+      title: '',
+      director: '',
+      description: '',
+      body: '',
+      image: '',
+      stars: '',
+      showtimes: '',
+      error: null
+     }
+
    }
 
+   onChange(e) {
+    this.setState({
+        [e.target.name]: e.target.value
+    })
+}
 
-   handleFileUpload = (e, file) => console.log(e.target.result, file.name);
+// this method handles just the file upload
+handleFileUpload(e) {
+  console.log("The file to be uploaded is: ", e.target.files[0]);
 
-   handleSubmit = (values, pristineValues) => {
-     // get all values and pristineValues on form submission
-   }
+  const uploadData = new FormData();
+  // imageUrl => this name has to be the same as in the model since we pass
+  // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+  uploadData.append("imageUrl", e.target.files[0]);
+  
+  handleUpload(uploadData)
+  .then(response => {
+      // console.log('response is: ', response);
+      // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
+      this.setState({ image: response.secure_url });
+    })
+    .catch(err => {
+      console.log("Error while uploading the file: ", err);
+    });
+}
+
+
+
+   handleSubmit = (e) => {
+    e.preventDefault();
+
+    const movie = {
+      title: this.state.title,
+      director: this.state.director,
+       description: this.state.description,
+       image: this.state.image,
+      stars: this.state.stars,
+      showtimes: this.state.showtimes
+    
+    }
+    console.log(movie);
+
+    movies(movie).then(res => {
+         this.props.history.push('/movies');
+    })
+}
+
 
 
 
