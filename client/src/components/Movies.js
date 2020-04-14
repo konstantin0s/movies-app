@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
  class Movies extends Component {
@@ -31,11 +32,33 @@ import axios from 'axios';
       }
 
     render() {
-        const { movies } = this.state;
+        const { movies, isLoading } = this.state;
         console.log(movies);
         return (
-            <div>
-                <h2>movies list</h2>
+            <div className="movies-container">
+
+{          isLoading ? <p>Loading...</p> :
+
+
+movies.map((movie) =>   
+<div className="card text-center" key={movie._id}>
+  <div className="card-body">
+    <img alt="Movie" className="movie-img" src={movie.image} />
+    <h2 className="card-title">{movie.title}</h2>
+    {/* <p className="description">
+        {movie.description}
+    </p> */}
+  </div>
+   <span className="artLink">  <Link className="btn btn-primary linkz" to={`/show/${movie._id}`}>Read MORE...</Link></span>
+  <div className="card-footer text-muted">
+   {/* <span> Posted: {Moment(article.date.dateFrom).format('YYYY-MM-DD')}</span> */}
+  </div>
+
+</div>
+)}
+              
+
+
             </div>
         )
     }
