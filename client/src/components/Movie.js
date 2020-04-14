@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -11,7 +11,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import { red, blue } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -19,27 +19,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
 const Movie = (props) => {
-  
-    //   oneMovie = () => {
-    //     const { params } = this.props.match;
-    //     this.setState(state => ({ ...state, isLoading: true }));
-    
-    //     axios
-    //       .get(`/one/${params.id}`)
-    //       .then(res => {
-    //         const movie = res.data;
-    //         this.setState({
-    //             movie: movie,
-    //           isLoading: false,
-            
-    //         });
-    //       })
-    //       .catch(err => console.log(err));
-    //   };
-
-    //   componentDidMount() {
-    //       this.oneMovie();
-    //   }
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
@@ -62,7 +41,7 @@ const Movie = (props) => {
               <CardHeader
                 avatar={
                   <Avatar aria-label="movie" className={classes.avatar}>
-                    R
+                    M
                   </Avatar>
                 }
                 action={
@@ -82,6 +61,12 @@ const Movie = (props) => {
                 <Typography variant="body2" color="textSecondary" component="p">
                Director: {" "} {director}
                 </Typography>
+                <Avatar aria-label="movie" className={classes.link}>
+              >
+                  </Avatar>
+                  <Link className="linkz" id={_id} to={`/one/${_id}`}>
+                Read More...
+                </Link>
               </CardContent>
               <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
@@ -147,4 +132,7 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
       backgroundColor: red[500],
     },
+    link: {
+        backgroundColor: blue[500],
+      }
   }));

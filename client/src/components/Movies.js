@@ -44,22 +44,7 @@ import './css/movies.css';
 
 
 movies.map((movie) =>   
-<Movie id={movie._id} movie={movie} />
-
-/* <div className="card text-center" key={movie._id}>
-  <div className="card-body">
-    <img alt="Movie" className="movie-img" src={movie.image} />
-    <h2 className="card-title">{movie.title}</h2>
-    {/* <p className="description">
-        {movie.description}
-    </p> 
-  </div>
-   <span className="artLink">  <Link className="btn btn-primary linkz" to={`/one/${movie._id}`}>Read MORE...</Link></span>
-  <div className="card-footer text-muted">
-   {/* <span> Posted: {Moment(article.date.dateFrom).format('YYYY-MM-DD')}</span> 
-  </div>
-
-</div> */
+<Movie key={movie._id} id={movie._id} movie={movie} />
 )}
               
 
