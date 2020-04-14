@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Movies from './components/Movies';
 import AddMovie from './components/AddMovie';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './App.css';
 
 export default class App extends Component {
@@ -21,7 +22,7 @@ export default class App extends Component {
 <Route exact path="/"  component={Movies} />
   <Route exact path="/add" component={AddMovie} />
   </Switch>
-      
+      <Footer />
  </div>
 </Router>
     
