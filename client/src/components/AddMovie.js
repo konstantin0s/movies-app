@@ -7,7 +7,9 @@ import './css/addmovie.css';
     render() {
         return (
             <div className="add-movie">
+                
                 <Formix />
+               
             </div>
         )
     }

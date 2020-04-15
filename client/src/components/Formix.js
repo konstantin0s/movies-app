@@ -18,10 +18,6 @@
 //     isLength:'Must be 2-50 characters', 
 //   })
 
-const containerX = {
-  display: 'flex',
-  flexWrap: 'wrap'
-};
 
 
 
@@ -112,7 +108,7 @@ handleFileUpload(e) {
         <MuiThemeProvider>
 <React.Fragment>
 <Paper  elevation={3} >
-<form className={containerX} onSubmit={this.handleSubmit}>
+<form className="containerX" onSubmit={this.handleSubmit}>
             <div>
               <TextField type="text" name="title" 
               placeholder="Title" onChange={this.onChange}
