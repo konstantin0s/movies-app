@@ -16,7 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import './css/movie.css';
 
 const Movie = (props) => {
 
@@ -75,7 +75,7 @@ const Movie = (props) => {
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
-                <IconButton
+                <IconButton id="expanding"
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,
                   })}
@@ -134,5 +134,8 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         backgroundColor: blue[500],
+        position: 'relative',
+        top: '28px',
+        left: '3em'
       }
   }));
