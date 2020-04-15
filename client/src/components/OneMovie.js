@@ -23,9 +23,9 @@ constructor(props) {
 
   delete = () => {
     // console.log(id);
-    axios.delete(`/movie/${this.state.movie._id}`)
+    axios.delete(`/${this.state.movie._id}`)
       .then((result) => {
-        this.props.history.push("/movies");
+        // this.props.history.push(`/movies`);
       });
   }
 
