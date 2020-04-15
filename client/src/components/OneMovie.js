@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 import './css/onemovie.css';
 
 
@@ -19,6 +20,14 @@ constructor(props) {
         isLoading: true
     }
 }
+
+  delete = () => {
+    // console.log(id);
+    axios.delete(`/movie/${this.state.movie._id}`)
+      .then((result) => {
+        this.props.history.push("/movies");
+      });
+  }
 
   
       oneMovie = () => {
@@ -98,28 +107,21 @@ console.log(movie);
                {movie.showtimes}
               </Button>
             </CardActions>
+            <CardContent>
+            <Typography>
+                  <div className="button-container"> 
+      
+          <Link to={`/edit/${this.state.movie._id}`} className="btn btn-success">Edit</Link>&nbsp;
+          <button onClick={this.delete.bind(this, this.state.movie._id)} className="btn btn-danger">Delete</button>
+  
+       </div>
+          </Typography>
+               </CardContent>
           </Card>
       </div>
 
 
 
-//             <div>
-//              <div className="card text-center" key={movie._id}>
-//   <div className="card-body">
-//     <img alt="Movie" className="movie-img" src={movie.image} />
-//     <h2 className="card-title">{movie.title}</h2>
-//        <p className="description">
-//          {movie.description}
-//     </p> 
-//   </div>
-
-  
-//   {/* <div className="card-footer text-muted">
-//      <span> Posted: {Moment(article.date.dateFrom).format('YYYY-MM-DD')}</span> 
-//   </div> */}
-
-// </div>
-//             </div>
         )
     }
 }

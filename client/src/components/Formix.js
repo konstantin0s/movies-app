@@ -10,7 +10,7 @@
   import './css/formix.css';
   import { movies } from './HelperFunctions';
   import {handleUpload} from './HelperFunctions';
-// import { withStyles } from 'material-ui/core/styles';
+
 
 
 // const customFormMsg = Object.assign(messageMap, { 
@@ -40,7 +40,8 @@ const textFieldx = {
       image: '',
       stars: '',
       showtimes: '',
-      error: null
+      error: null,
+      redirect: false
      }
 
      this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -91,22 +92,30 @@ handleFileUpload(e) {
     console.log(movie);
 
     movies(movie).then(res =>  (
-        //  this.props.history.push('/movies');
-        <Redirect to={{ pathname: '/movies'}} />  
-    )
+      this.props.history.push(`/movies`))
       
     )
 }
 
+setRedirect = () => {
+  this.setState({
+    redirect: true
+  })
+}
 
+renderRedirect = () => {
+  if (this.state.redirect) {
+    return <Redirect to='/movies' />
+  }
+}
 
 
 
     render() {
       return (
-
-        <MuiThemeProvider>
 <React.Fragment>
+        <MuiThemeProvider>
+
 <Paper  elevation={3} >
 <form className="containerX" onSubmit={this.handleSubmit}>
             <div>
@@ -142,6 +151,7 @@ handleFileUpload(e) {
             <TextField
     id="date"
     type="text"
+    name="showtimes"
     defaultValue="2017-05-24"
     className={textFieldx}
     InputLabelProps={{
@@ -151,13 +161,13 @@ handleFileUpload(e) {
             </div>
         
             <div>
-              <RaisedButton type="submit" label="Submit" primary={true} style={style}/>
+              <RaisedButton type="submit" onClick={this.renderRedirect}
+              label="Submit" primary={true} style={style}/>
             </div>
           </form>
 </Paper>
-</React.Fragment>
       </MuiThemeProvider>
-
+      </React.Fragment>
       )
     }
   }

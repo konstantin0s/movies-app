@@ -14,4 +14,23 @@ router.get('/movie/:id', (req, res, next) => {
   });
 });
 
+//Edit single Movie
+router.put('/movie/edit/:id', function(req, res, next) {
+  debugger
+  Movies.findByIdAndUpdate(req.params.id, req.body, function (err, movie) {
+    debugger
+    if (err) return next(err);
+    res.json(movie);
+    debugger
+  });
+});
+
+//@route Delete Article
+router.delete('/:id', (req, res) => {
+  Movies.findById(req.params.id)
+ .then(article => article.remove().then(() => res.json({success: true})))
+ .catch(err => res.status(404).json({success: false}));
+});
+
+
 module.exports = router;

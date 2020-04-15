@@ -27,9 +27,6 @@ const Movie = (props) => {
       setExpanded(!expanded);
     };
   
-    
-
-
   
     
         console.log(props.movie);
@@ -98,9 +95,7 @@ const Movie = (props) => {
                   <Typography paragraph>
                    Showtimes: {" "} {showtimes}
                   </Typography>
-                  <Typography>
-                      
-                  </Typography>
+   
                 </CardContent>
               </Collapse>
             </Card>

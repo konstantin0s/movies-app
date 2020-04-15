@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Movies from './components/Movies';
-import Movie from './components/Movie';
+import EditMovie from './components/EditMovie';
 import AddMovie from './components/AddMovie';
 import OneMovie from './components/OneMovie';
 import Header from './components/Header';
@@ -31,7 +31,7 @@ export default class App extends Component {
           return <OneMovie id={id} />;
         }}
       />
-
+<Route path="/edit/:id" component={EditMovie} />
 
   </Switch>
       <Footer />

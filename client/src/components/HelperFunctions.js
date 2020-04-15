@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const movies = newMovie => {
     return axios.post(`/add`, {
       title: newMovie.title,
@@ -10,6 +11,7 @@ export const movies = newMovie => {
       showtimes: newMovie.showtimes
     })
     .then(res => {
+
       console.log('Movie added!');
       console.log(newMovie);
     });
