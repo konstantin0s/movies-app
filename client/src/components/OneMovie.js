@@ -52,7 +52,8 @@ console.log(movie);
 
         return (
             
-            <Card className="cardex">
+      <div className="text-center">
+              <Card className="cardex">
              <CardActionArea>
             <CardContent className="image-card">
               <CardMedia
@@ -98,6 +99,7 @@ console.log(movie);
               </Button>
             </CardActions>
           </Card>
+      </div>
 
 
 
