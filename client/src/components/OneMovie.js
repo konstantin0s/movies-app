@@ -11,6 +11,8 @@ import { Link, withRouter } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Loading from './Loading';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import './css/onemovie.css';
 
 
@@ -25,12 +27,43 @@ constructor(props) {
 }
 
   delete = () => {
-    // console.log(id);
-    axios.delete(`/${this.state.movie._id}`)
-      .then((result) => {
-        this.props.history.push(`/`);
-      });
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui'>
+            <h1>Are you sure</h1>
+            <p>You want to delete this file?</p>
+            <Button
+        variant="contained"
+        color="primary"
+             onClick={onClose}>No</Button>
+            <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => {
+          this.handleClickDelete()
+          onClose()
+        }}
+        startIcon={<DeleteIcon />}
+      >
+       Yes, Delete!
+      </Button>
+          </div>
+        )
+      }
+    })
+
   }
+
+  handleClickDelete = () => {
+       // console.log(id);
+       axios.delete(`/${this.state.movie._id}`)
+       .then((result) => {
+         this.props.history.push(`/`);
+       });
+  }
+
+  
 
   
       oneMovie = () => {
@@ -124,7 +157,9 @@ constructor(props) {
         variant="contained"
         color="secondary"
         className="btn btn-danger"
-        onClick={this.delete.bind(this, this.state.movie._id)}
+        onClick={() => {
+          this.delete()
+        }}
         startIcon={<DeleteIcon />}
       >
         Delete

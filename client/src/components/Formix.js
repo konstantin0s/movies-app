@@ -96,22 +96,22 @@ handleFileUpload(e) {
         <MuiThemeProvider>
 
 <Paper  elevation={3} >
-<ValidatorForm className="containerX" onSubmit={this.handleSubmit}>
+<form className="containerX" onSubmit={this.handleSubmit}>
             <div>
-              <TextValidator type="text" name="director" placeholder="Director"  
+              <TextField type="text" name="director" placeholder="Director"  
               // eslint-disable-next-line 
                type="text" name="title" 
                // eslint-disable-next-line 
               placeholder="Title" onChange={this.onChange}
-              validators={['required', 'isTitle']}
-              errorMessages={['this field is required', ' field cannot be empty']}
+              // validators={['required', 'isTitle']}
+              // errorMessages={['this field is required', ' field cannot be empty']}
               />
             </div>
             <div>
-              <TextValidator type="text" name="director" placeholder="Director"  
+              <TextField type="text" name="director" placeholder="Director"  
               onChange={this.onChange}
-              validators={['required', 'isDirector']}
-              errorMessages={['this field is required', ' field cannot be empty']}
+              // validators={['required', 'isDirector']}
+              // errorMessages={['this field is required', ' field cannot be empty']}
                />
             </div>
             <div>
@@ -127,10 +127,10 @@ handleFileUpload(e) {
       </Button>
               </div> 
             <div>
-              <TextValidator type="text" name="stars" 
+              <TextField type="text" name="stars" 
               placeholder="Stars" onChange={this.onChange}
-              validators={['required', 'isStars']}
-              errorMessages={['this field is required', ' field cannot be empty']}
+              // validators={['required', 'isStars']}
+              // errorMessages={['this field is required', ' field cannot be empty']}
                />
             </div>
             
@@ -156,6 +156,7 @@ handleFileUpload(e) {
         
             <div>
             <Button
+            type="submit"
         variant="contained"
         color="primary"
         size="small"
@@ -165,7 +166,7 @@ handleFileUpload(e) {
         Save
       </Button>
             </div>
-          </ValidatorForm>
+          </form>
 </Paper>
       </MuiThemeProvider>
       </React.Fragment>

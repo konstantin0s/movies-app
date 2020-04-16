@@ -139,6 +139,7 @@ componentDidMount() {
           <div>
             <Button
         variant="contained"
+        type="submit"
         color="primary"
         size="small"
         className="save-btn"
