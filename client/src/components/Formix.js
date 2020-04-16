@@ -1,7 +1,5 @@
   import React, {Component} from 'react';
   import { withRouter} from "react-router-dom";
-  import { faUpload } from '@fortawesome/free-solid-svg-icons';
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
   import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
   import Paper from '@material-ui/core/Paper';
   import Button from '@material-ui/core/Button';
@@ -12,23 +10,13 @@
   import './css/formix.css';
   import { movies } from './HelperFunctions';
   import {handleUpload} from './HelperFunctions';
-
+  import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 // const customFormMsg = Object.assign(messageMap, { 
 //     isEmail: 'Please enter a valid email address',  
 //     isLength:'Must be 2-50 characters', 
 //   })
-
-
-
-
-const textFieldx = {
-  marginLeft: '1em',
-  marginRight: '1em',
-  width: '200px'
-};
-
   
  class Formix extends Component {
    constructor(props) {
@@ -108,14 +96,22 @@ handleFileUpload(e) {
         <MuiThemeProvider>
 
 <Paper  elevation={3} >
-<form className="containerX" onSubmit={this.handleSubmit}>
+<ValidatorForm className="containerX" onSubmit={this.handleSubmit}>
             <div>
-              <TextField type="text" name="title" 
+              <TextValidator type="text" name="director" placeholder="Director"  
+              // eslint-disable-next-line 
+               type="text" name="title" 
+               // eslint-disable-next-line 
               placeholder="Title" onChange={this.onChange}
+              validators={['required', 'isTitle']}
+              errorMessages={['this field is required', ' field cannot be empty']}
               />
             </div>
             <div>
-              <TextField type="text" name="director" placeholder="Director"   onChange={this.onChange}
+              <TextValidator type="text" name="director" placeholder="Director"  
+              onChange={this.onChange}
+              validators={['required', 'isDirector']}
+              errorMessages={['this field is required', ' field cannot be empty']}
                />
             </div>
             <div>
@@ -131,7 +127,10 @@ handleFileUpload(e) {
       </Button>
               </div> 
             <div>
-              <TextField type="text" name="stars" placeholder="Stars" onChange={this.onChange}
+              <TextValidator type="text" name="stars" 
+              placeholder="Stars" onChange={this.onChange}
+              validators={['required', 'isStars']}
+              errorMessages={['this field is required', ' field cannot be empty']}
                />
             </div>
             
@@ -148,8 +147,8 @@ handleFileUpload(e) {
     type="text"
     name="showtimes"
     defaultValue="2017-05-24"
-    className={textFieldx}
-    InputLabelProps={{
+    className="textField"
+    inputlabelprops={{
       shrink: true,
     }}
     onChange={this.onChange}/>
@@ -160,13 +159,13 @@ handleFileUpload(e) {
         variant="contained"
         color="primary"
         size="small"
-        className="save-btn"
+        className={style}
         startIcon={<SaveIcon />}
       >
         Save
       </Button>
             </div>
-          </form>
+          </ValidatorForm>
 </Paper>
       </MuiThemeProvider>
       </React.Fragment>

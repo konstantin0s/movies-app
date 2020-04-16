@@ -41,3 +41,9 @@ input[type="file"] {
     font-weight: bold;
     opacity: 1;
 }
+
+.textFieldx {
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 200px;
+}

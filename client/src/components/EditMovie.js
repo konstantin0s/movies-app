@@ -86,7 +86,7 @@ componentDidMount() {
 
   render() {
       const { title, description, director, showtimes, stars} = this.state.movie;
-      console.log(this.state.movie);
+      // console.log(this.state.movie);
     return (
 <div className="add-movie">
       <MuiThemeProvider>
@@ -148,7 +148,7 @@ componentDidMount() {
         variant="contained"
         color="primary"
         size="small"
-        className="save-btn"
+        className={style}
         startIcon={<SaveIcon />}
       >
         Save

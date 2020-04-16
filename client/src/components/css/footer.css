@@ -1,0 +1,12 @@
+#footer {
+    width: 100%;
+    background-color: #3f51b5 !important;
+    color: #fff;
+    bottom: 0;
+    position: fixed;
+}
+
+.MuiInput-root {
+    margin: 0.5em 0em;
+    color: #fff;
+}
