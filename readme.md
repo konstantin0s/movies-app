@@ -1,4 +1,4 @@
-Content will be added soon!
+
 
 # 1.Git clone Repo
 # 2. Create .env file in the root directory with env Variables required by the node, express app.
@@ -17,3 +17,6 @@ Content will be added soon!
 # 13. You can edit the movie & also you can delete the movie(with confirmation).
 # 14. You can add your own collection of movies where can be seen by whomever will navigate on this website.
 # 15. Questions or recommendations on how to improve the website? Shoot me an email at: constantintofan85@gmail.com 
+
+# Implement stars, so people can vote by clicking on stars.
+# Deploy the app to heroku & add it to the portfolio
