@@ -16,7 +16,9 @@ class EditMovie extends Component {
    super(props);
 
    this.state = {
-      movie: {}
+      movie: {},
+      helpertext: '',
+      error: false 
    }
 
    this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -24,11 +26,21 @@ class EditMovie extends Component {
 
  }
 
- onChange(e) {
+  onChange(e) {
     const state = this.state.movie;
     state[e.target.name] = e.target.value;
-    this.setState({movie:state});
-  }
+
+    if (e.target.value.length <= 2) {
+      this.setState({
+        helpertext: 'Try Harder', error: true });
+    } else {
+      this.setState({ 
+        movie:state,
+        helpertext: '',  
+        error: false 
+      });
+    }
+}
 
 
 // this method handles just the file upload
@@ -89,11 +101,19 @@ componentDidMount() {
           <div>
             <TextField type="text" name="title" value={title || ''}
             placeholder="Title" onChange={this.onChange}
+            error={this.state.error.toString()}
+            required
+            id="outlined-required"
             />
+             <div className="error" 
+             style={{ fontSize: 12, color: "red"}}>{this.state.helpertext}</div><br />
           </div>
           <div>
             <TextField type="text" name="director" placeholder="Director" value={director || ''}
               onChange={this.onChange}
+              error={this.state.error.toString()}
+              required
+              id="outlined-required"
              />
           </div>
           <div>
@@ -105,12 +125,18 @@ componentDidMount() {
       > Up
            <input type="file" name="image" className="btn btn-warning addPic"
             onChange={(e) => this.handleFileUpload(e)}
+            error={this.state.error.toString()}
+            required
+            id="outlined-required"
             /> 
       </Button>
             </div> 
           <div>
             <TextField type="text" name="stars" value={stars || ''}
              placeholder="Stars" onChange={this.onChange}
+             error={this.state.error.toString()}
+             required
+             id="outlined-required"
              />
           </div>
           
@@ -118,7 +144,11 @@ componentDidMount() {
           <div>
           <TextareaAutosize aria-label="minimum height" type="text" name="description"
            rowsMin={3} placeholder="Add Description"  value={description || ''}
-            onChange={this.onChange}/>
+            onChange={this.onChange}
+            error={this.state.error.toString()}
+            required
+            id="outlined-required"
+            />
           
           </div>
 
@@ -133,7 +163,11 @@ componentDidMount() {
   inputlabelprops={{
     shrink: true,
   }}
-  onChange={this.onChange}/>
+  onChange={this.onChange}
+  error={this.state.error.toString()}
+  required
+  id="outlined-required"
+  />
           </div>
       
           <div>
