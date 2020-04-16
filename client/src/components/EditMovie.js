@@ -75,16 +75,27 @@ componentDidMount() {
       .catch(err => console.log(err));
   }
 
+  validate = () => {
+
+    if (this.state.error === true) {
+         return false;
+     }
+     return true;
+  }
+  
 
  handleSubmit = (e) => {
   e.preventDefault();
 
-  const {
-    title, director, description, image, stars, showtimes, _id } = this.state.movie;
-  axios.put(`/movie/edit/${_id}`, {title, director, description, image, stars, showtimes })
-  .then((result) => {
-    this.props.history.push(`/one/${_id}`);
-  });
+  const isValid = this.validate();
+
+  const { title, director, description, image, stars, showtimes, _id } = this.state.movie;
+  if (isValid) {
+    axios.put(`/movie/edit/${_id}`, {title, director, description, image, stars, showtimes })
+    .then((result) => {
+      this.props.history.push(`/one/${_id}`);
+    });
+  }
 }
 
 
