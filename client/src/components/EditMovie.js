@@ -11,13 +11,6 @@ import {handleUpload} from './HelperFunctions';
 import axios from 'axios';
 
 
-const textFieldx = {
-marginLeft: '1em',
-marginRight: '1em',
-width: '200px'
-};
-
-
 class EditMovie extends Component {
  constructor(props) {
    super(props);
@@ -94,12 +87,12 @@ componentDidMount() {
 <Paper  elevation={3} >
 <form className="containerX" onSubmit={this.handleSubmit}>
           <div>
-            <TextField type="text" name="title" value={title}
+            <TextField type="text" name="title" value={title || ''}
             placeholder="Title" onChange={this.onChange}
             />
           </div>
           <div>
-            <TextField type="text" name="director" placeholder="Director" value={director}
+            <TextField type="text" name="director" placeholder="Director" value={director || ''}
               onChange={this.onChange}
              />
           </div>
@@ -116,7 +109,7 @@ componentDidMount() {
       </Button>
             </div> 
           <div>
-            <TextField type="text" name="stars" value={stars}
+            <TextField type="text" name="stars" value={stars || ''}
              placeholder="Stars" onChange={this.onChange}
              />
           </div>
@@ -124,7 +117,7 @@ componentDidMount() {
 
           <div>
           <TextareaAutosize aria-label="minimum height" type="text" name="description"
-           rowsMin={3} placeholder="Add Description"  value={description}
+           rowsMin={3} placeholder="Add Description"  value={description || ''}
             onChange={this.onChange}/>
           
           </div>
@@ -134,10 +127,10 @@ componentDidMount() {
   id="date"
   type="text"
   name="showtimes"
-  defaultValue="2017-05-24"
-  value={showtimes}
-  className={textFieldx}
-  InputLabelProps={{
+  value={showtimes || ''}
+  className="textFieldx"
+
+  inputlabelprops={{
     shrink: true,
   }}
   onChange={this.onChange}/>
@@ -148,7 +141,7 @@ componentDidMount() {
         variant="contained"
         color="primary"
         size="small"
-        className={style}
+        className="save-btn"
         startIcon={<SaveIcon />}
       >
         Save
@@ -164,7 +157,3 @@ componentDidMount() {
 
 
 export default EditMovie;
-
-const style = {
-  margin: 4
-};

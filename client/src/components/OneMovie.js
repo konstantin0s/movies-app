@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link, withRouter } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Loading from './Loading';
 import './css/onemovie.css';
 
 
@@ -58,11 +59,13 @@ constructor(props) {
 
     render() {
 
-        const { movie} = this.state;
+        const { movie, isLoading} = this.state;
 
         return (
             
+      
       <div className="text-center">
+           {  isLoading ? <Loading /> : 
               <Card className="cardex">
              <CardActionArea>
             <CardContent className="image-card">
@@ -101,15 +104,13 @@ constructor(props) {
 
             </CardActionArea>
             <CardActions>
-              <Button size="small" color="primary">
-                Showtimes:
-              </Button>
-              <Button size="small" color="primary">
-               {movie.showtimes}
-              </Button>
+        
+            <Typography variant="body2" color="textSecondary" component="p">
+                       Showtimes: {" "}   {movie.showtimes}
+            </Typography>
+
             </CardActions>
             <CardContent>
-            <Typography>
                   <div className="button-container"> 
                   <Button
         variant="contained"
@@ -129,9 +130,9 @@ constructor(props) {
         Delete
       </Button>
        </div>
-          </Typography>
                </CardContent>
           </Card>
+    }
       </div>
 
 

@@ -159,7 +159,7 @@ handleFileUpload(e) {
         variant="contained"
         color="primary"
         size="small"
-        className={style}
+        className="save-btn"
         startIcon={<SaveIcon />}
       >
         Save
@@ -175,8 +175,3 @@ handleFileUpload(e) {
   
 
   export default withRouter(Formix);
-
-  const style = {
-    margin: 4
-  };
-  
