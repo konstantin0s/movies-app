@@ -18,5 +18,7 @@
 # 14. You can add your own collection of movies where can be seen by whomever will navigate on this website.
 # 15. Questions or recommendations on how to improve the website? Shoot me an email at: constantintofan85@gmail.com 
 
+Short description on the used languages: express.js, node.js used as middleware in the backend and in the front end, React.js, Material UI.
+
 # Implement stars, so people can vote by clicking on stars.
 # Deploy the app to heroku & add it to the portfolio
