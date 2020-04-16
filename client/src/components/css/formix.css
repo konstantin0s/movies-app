@@ -47,3 +47,14 @@ input[type="file"] {
     margin-right: 1em;
     width: 200px;
 }
+
+/*error */
+.error {
+    position: relative;
+    top: -100px;
+    padding: 4px;
+    font-weight: 600;
+    color: red;
+    font-size: 13px;
+    border-bottom: 2px solid thistle;
+}

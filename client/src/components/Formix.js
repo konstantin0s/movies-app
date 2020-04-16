@@ -10,7 +10,6 @@
   import './css/formix.css';
   import { movies } from './HelperFunctions';
   import {handleUpload} from './HelperFunctions';
-  import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 // const customFormMsg = Object.assign(messageMap, { 
@@ -30,8 +29,9 @@
       image: '',
       stars: '',
       showtimes: '',
-      error: null,
-      redirect: false
+      redirect: false,
+      helpertext: '',
+       error: false 
      }
 
      this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -40,9 +40,15 @@
    }
 
    onChange(e) {
-    this.setState({
-        [e.target.name]: e.target.value
-    })
+    if (e.target.value.length <= 2) {
+      this.setState({
+        helpertext: 'Try Harder', error: true });
+    } else {
+      this.setState({ 
+        [e.target.name]: e.target.value,
+        helpertext: '',  error: false 
+      });
+    }
 }
 
 // this method handles just the file upload
@@ -91,6 +97,7 @@ handleFileUpload(e) {
 
 
     render() {
+      console.log(this.state.helpertext);
       return (
 <React.Fragment>
         <MuiThemeProvider>
@@ -98,20 +105,28 @@ handleFileUpload(e) {
 <Paper  elevation={3} >
 <form className="containerX" onSubmit={this.handleSubmit}>
             <div>
-              <TextField type="text" name="director" placeholder="Director"  
+              <TextField 
+                  helpertext={this.state.helpertext}
+              type="text" name="director" placeholder="Director"  
               // eslint-disable-next-line 
                type="text" name="title" 
                // eslint-disable-next-line 
               placeholder="Title" onChange={this.onChange}
-              // validators={['required', 'isTitle']}
-              // errorMessages={['this field is required', ' field cannot be empty']}
+              error={this.state.error.toString()}
+              required
+              id="outlined-required"
               />
+               <div className="error" 
+               style={{ fontSize: 12, color: "red"}}>{this.state.helpertext}</div><br />
             </div>
             <div>
-              <TextField type="text" name="director" placeholder="Director"  
+              <TextField
+                  helpertext={this.state.helpertext}
+               type="text" name="director" placeholder="Director"  
               onChange={this.onChange}
-              // validators={['required', 'isDirector']}
-              // errorMessages={['this field is required', ' field cannot be empty']}
+              error={this.state.error.toString()}
+              required
+              id="outlined-required"
                />
             </div>
             <div>
@@ -127,22 +142,32 @@ handleFileUpload(e) {
       </Button>
               </div> 
             <div>
-              <TextField type="text" name="stars" 
+              <TextField
+                  helpertext={this.state.helpertext}
+               type="text" name="stars" 
               placeholder="Stars" onChange={this.onChange}
-              // validators={['required', 'isStars']}
-              // errorMessages={['this field is required', ' field cannot be empty']}
+              error={this.state.error.toString()}
+              required
+              id="outlined-required"
                />
             </div>
             
 
             <div>
-            <TextareaAutosize aria-label="minimum height" type="text" name="description"
-             rowsMin={3} placeholder="Add Description"   onChange={this.onChange}/>
+            <TextareaAutosize 
+                helpertext={this.state.helpertext}
+            aria-label="minimum height" type="text" name="description"
+             rowsMin={3} placeholder="Add Description"   onChange={this.onChange}
+             error={this.state.error.toString()}
+             required
+             id="outlined-required"
+             />
             
             </div>
 
             <div>
             <TextField
+                helpertext={this.state.helpertext}
     id="date"
     type="text"
     name="showtimes"
@@ -151,7 +176,10 @@ handleFileUpload(e) {
     inputlabelprops={{
       shrink: true,
     }}
-    onChange={this.onChange}/>
+    onChange={this.onChange}
+    error={this.state.error.toString()}
+    required
+    />
             </div>
         
             <div>
