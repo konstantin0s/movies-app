@@ -71,10 +71,19 @@ handleFileUpload(e) {
     });
 }
 
+validate = () => {
+
+  if (this.state.error === true) {
+       return false;
+   }
+   return true;
+}
 
 
    handleSubmit = (e) => {
     e.preventDefault();
+
+    const isValid = this.validate();
 
     const movie = {
       title: this.state.title,
@@ -83,21 +92,21 @@ handleFileUpload(e) {
        image: this.state.image,
       stars: this.state.stars,
       showtimes: this.state.showtimes
-    
     }
-    console.log(movie);
-
+    // console.log(movie);
+    if (isValid) {
     movies(movie).then(res =>  (
       this.props.history.push(`/`))
       
     )
+    }
 }
 
 
 
 
     render() {
-      console.log(this.state.helpertext);
+
       return (
 <React.Fragment>
         <MuiThemeProvider>
