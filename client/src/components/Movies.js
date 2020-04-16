@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import Movie from './Movie';
 import axios from 'axios';

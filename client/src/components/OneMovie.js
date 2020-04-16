@@ -7,7 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 import './css/onemovie.css';
 
 
@@ -25,7 +26,7 @@ constructor(props) {
     // console.log(id);
     axios.delete(`/${this.state.movie._id}`)
       .then((result) => {
-        // this.props.history.push(`/movies`);
+        this.props.history.push(`/`);
       });
   }
 
@@ -127,4 +128,4 @@ console.log(movie);
 }
 
 
-export default OneMovie;
+export default withRouter(OneMovie);

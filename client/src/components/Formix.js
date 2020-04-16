@@ -1,5 +1,5 @@
   import React, {Component} from 'react';
-  import { Redirect} from "react-router-dom";
+  import { withRouter} from "react-router-dom";
   import { faUpload } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
   import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -92,22 +92,11 @@ handleFileUpload(e) {
     console.log(movie);
 
     movies(movie).then(res =>  (
-      this.props.history.push(`/movies`))
+      this.props.history.push(`/`))
       
     )
 }
 
-setRedirect = () => {
-  this.setState({
-    redirect: true
-  })
-}
-
-renderRedirect = () => {
-  if (this.state.redirect) {
-    return <Redirect to='/movies' />
-  }
-}
 
 
 
@@ -161,7 +150,7 @@ renderRedirect = () => {
             </div>
         
             <div>
-              <RaisedButton type="submit" onClick={this.renderRedirect}
+              <RaisedButton type="submit"
               label="Submit" primary={true} style={style}/>
             </div>
           </form>
@@ -173,7 +162,7 @@ renderRedirect = () => {
   }
   
 
-  export default Formix;
+  export default withRouter(Formix);
 
   const style = {
     margin: 4

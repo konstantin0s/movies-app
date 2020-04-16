@@ -88,7 +88,7 @@ componentDidMount() {
 
 
   render() {
-      const { title, description, image, director, showtimes, stars} = this.state.movie;
+      const { title, description, director, showtimes, stars} = this.state.movie;
       console.log(this.state.movie);
     return (
 <React.Fragment>

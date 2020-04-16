@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import Movies from './components/Movies';
 import EditMovie from './components/EditMovie';
 import AddMovie from './components/AddMovie';
@@ -9,7 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 
-export default class App extends Component {
+class App extends Component {
 
 
   render() {
@@ -41,3 +41,8 @@ export default class App extends Component {
     )
   }
 }
+
+
+const AppWithRouter = withRouter(App);
+
+export default AppWithRouter;
