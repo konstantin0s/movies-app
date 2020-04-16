@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from '@material-ui/core/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import TextField from 'material-ui/TextField';
 import { TextareaAutosize } from '@material-ui/core';
 import './css/formix.css';
 import {handleUpload} from './HelperFunctions';
+import SaveIcon from '@material-ui/icons/Save';
 import axios from 'axios';
 
 
@@ -91,7 +91,7 @@ componentDidMount() {
       const { title, description, director, showtimes, stars} = this.state.movie;
       console.log(this.state.movie);
     return (
-<React.Fragment>
+<div className="add-movie">
       <MuiThemeProvider>
 
 <Paper  elevation={3} >
@@ -107,12 +107,17 @@ componentDidMount() {
              />
           </div>
           <div>
-          <label className="custom-file-upload">
-           Image <FontAwesomeIcon icon={faUpload} />
+           <Button
+        variant="contained"
+        color="default"
+        className="upload-button"
+        startIcon={<CloudUploadIcon />}
+      > Up
            <input type="file" name="image" className="btn btn-warning addPic"
             onChange={(e) => this.handleFileUpload(e)}
             /> 
-                </label>
+      </Button>
+                {/* </label> */}
             </div> 
           <div>
             <TextField type="text" name="stars" value={stars}
@@ -143,13 +148,20 @@ componentDidMount() {
           </div>
       
           <div>
-            <RaisedButton type="submit"
-            label="Submit" primary={true} style={style}/>
+            <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className="save-btn"
+        startIcon={<SaveIcon />}
+      >
+        Save
+      </Button>
           </div>
         </form>
 </Paper>
     </MuiThemeProvider>
-    </React.Fragment>
+    </div>
     )
   }
 }
