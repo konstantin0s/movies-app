@@ -35,19 +35,15 @@ import './css/movies.css';
 
     render() {
         const { movies, isLoading } = this.state;
-        console.log(movies);
+
         return (
             <div className="movies-container">
 
-{          isLoading ? <Loading /> :
-
-
-movies.map((movie) =>   
-<Movie key={movie._id} id={movie._id} movie={movie} />
-)}
-              
-
-
+                {  isLoading ? <Loading /> :
+                movies.map((movie) =>   
+                <Movie key={movie._id} id={movie._id} movie={movie} />
+                )}
+                        
             </div>
         )
     }

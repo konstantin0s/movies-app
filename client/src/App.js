@@ -27,7 +27,7 @@ class App extends Component {
         path="/one/:id" 
         render={request => {
           const id = request.match.params.id;
-          console.log(id);
+          // console.log(id);
           return <OneMovie id={id} />;
         }}
       />

@@ -12,15 +12,14 @@ export const movies = newMovie => {
     })
     .then(res => {
 
-      console.log('Movie added!');
-      console.log(newMovie);
+      // console.log('Movie added!');
+      // console.log(newMovie);
     });
   };
   
   
   export const handleUpload = theFile => {
   
-      // console.log('file in service: ', theFile);
     return  axios.post(`/upload`, theFile)
         .then(res => res.data)
         .catch(err => {

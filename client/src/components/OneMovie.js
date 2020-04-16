@@ -34,14 +34,14 @@ constructor(props) {
   
       oneMovie = () => {
         const { id } = this.props;
-        console.log(id);
+        // console.log(id);
         this.setState(state => ({ ...state, isLoading: true }));
     
         axios
           .get(`/one/${id}`)
           .then(res => {
             const movie = res.data;
-            console.log(movie)
+            // console.log(movie)
             this.setState({
                 movie: movie,
               isLoading: false,
@@ -57,9 +57,8 @@ constructor(props) {
 
 
     render() {
-console.log(this.state.movie);
+
         const { movie} = this.state;
-console.log(movie);
 
         return (
             
@@ -129,8 +128,6 @@ console.log(movie);
       >
         Delete
       </Button>
-          {/* <button onClick={this.delete.bind(this, this.state.movie._id)} className="btn btn-danger">Delete</button>
-   */}
        </div>
           </Typography>
                </CardContent>

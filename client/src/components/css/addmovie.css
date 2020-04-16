@@ -12,6 +12,8 @@
 }
 
 .add-movie>div {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background-color: rgb(197, 153, 88);
 }

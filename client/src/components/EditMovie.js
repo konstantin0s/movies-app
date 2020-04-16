@@ -3,11 +3,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import SaveIcon from '@material-ui/icons/Save';
 import TextField from 'material-ui/TextField';
 import { TextareaAutosize } from '@material-ui/core';
 import './css/formix.css';
 import {handleUpload} from './HelperFunctions';
-import SaveIcon from '@material-ui/icons/Save';
 import axios from 'axios';
 
 
@@ -65,7 +65,7 @@ componentDidMount() {
     axios.get(`/one/${params.id}`)
       .then(res => {
         this.setState({ movie: res.data });
-        console.log(this.state.movie);
+        // console.log(this.state.movie);
       })
       .catch(err => console.log(err));
   }
@@ -76,10 +76,7 @@ componentDidMount() {
 
   const {
     title, director, description, image, stars, showtimes, _id } = this.state.movie;
-  console.log(this.state.movie);
-
   axios.put(`/movie/edit/${_id}`, {title, director, description, image, stars, showtimes })
-
   .then((result) => {
     this.props.history.push(`/one/${_id}`);
   });
@@ -117,7 +114,6 @@ componentDidMount() {
             onChange={(e) => this.handleFileUpload(e)}
             /> 
       </Button>
-                {/* </label> */}
             </div> 
           <div>
             <TextField type="text" name="stars" value={stars}

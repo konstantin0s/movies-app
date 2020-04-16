@@ -32,4 +32,12 @@ input[type="file"] {
     display: inline-block;
     position: relative;
     width: 60%;
+    top: 100px;
+}
+
+::placeholder,
+#date {
+    color: white;
+    font-weight: bold;
+    opacity: 1;
 }

@@ -35,7 +35,7 @@ export default function Header() {
            <Link to="/"> MoviePlex</Link>
           </Typography>
           <Button color="inherit">
-<Link to="/add">Add Movies</Link>
+          <Link to="/add">Add Movies</Link>
           </Button>
         </Toolbar>
       </AppBar>

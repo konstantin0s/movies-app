@@ -27,9 +27,8 @@ const Movie = (props) => {
       setExpanded(!expanded);
     };
   
-  
-    
-        console.log(props.movie);
+
+        // console.log(props.movie);
 
         const { title, director, image, description, stars, showtimes, _id } = props.movie;
        
