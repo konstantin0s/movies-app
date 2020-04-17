@@ -47,3 +47,7 @@
      background: var(--secondary-color);
      color: var(--primary-color);
  }
+
+ .MuiSvgIcon-root .red {
+     color: red;
+ }

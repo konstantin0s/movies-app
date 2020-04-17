@@ -22,11 +22,34 @@ const Movie = (props) => {
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [count, setCount] = React.useState(0);
+
+    const incLikes = () => {
+      let newCount = count + 1;
+      if (newCount >= 1) {
+        let apath = document.getElementsByClassName('icon-button');
+
+        for (let i = 0; i < apath.length; i++) {
+          apath[i].style.color = "red";
+        }
+
+       }
+      setCount(newCount);
+
+    }
   
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
   
+  // const heartClass = () => {
+  //   if (setCount >= 1) {
+  //    let apath = document.querySelector('path');
+  //    apath.backgroundColor = 'red';
+  //    console.log(setCount)
+  //   }
+  // };
+
 
         // console.log(props.movie);
 
@@ -51,7 +74,7 @@ const Movie = (props) => {
               <CardMedia
                 className={classes.media}
                 image={image}
-                title="Mive"
+                title="Movie"
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -65,9 +88,12 @@ const Movie = (props) => {
                 </Link>
               </CardContent>
               <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
+                <IconButton  aria-label="add to favorites" 
+                 onClick={incLikes}>
+                  <FavoriteIcon className="icon-button"/>
                 </IconButton>
+                Likes: {count}
+
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
