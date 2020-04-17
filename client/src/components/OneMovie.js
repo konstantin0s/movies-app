@@ -11,6 +11,8 @@ import { Link, withRouter } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Loading from './Loading';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import './css/onemovie.css';
@@ -89,6 +91,26 @@ constructor(props) {
           this.oneMovie();
       }
 
+      renderStars = () => {
+        const { movie } = this.state;
+        let starx = [];
+        starx = movie.stars.toString();
+        let result = starx.replace(/,/g, "");
+      
+        for (let i = 0; i < result.length; i++) {
+       
+return (
+ <Box key={Math.random() * 10 - 1} component="fieldset" mb={3} borderColor="transparent">
+    <Typography component="legend">Stars</Typography>
+  
+    <Rating name="read-only" precision={0.5}
+    value={parseInt(result[i])} readOnly />
+    </Box> 
+)
+        }
+ }
+
+
 
     render() {
 
@@ -127,12 +149,14 @@ constructor(props) {
                 </Typography>
               </CardContent>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                {/* <Typography gutterBottom variant="h5" component="h2">
                 Stars
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                {movie.stars}
-                </Typography>
+                </Typography> */}
+
+                { this.renderStars()} 
               </CardContent>
 
             </CardActionArea>

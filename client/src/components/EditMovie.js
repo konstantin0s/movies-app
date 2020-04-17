@@ -31,6 +31,7 @@ class EditMovie extends Component {
     state[e.target.name] = e.target.value;
 
     if (e.target.value.length <= 2) {
+      
       this.setState({
         helpertext: 'Try Harder', error: true });
     } else {
@@ -145,9 +146,8 @@ componentDidMount() {
           <div>
             <TextField type="text" name="stars" value={stars || ''}
              placeholder="Stars" onChange={this.onChange}
-             error={this.state.error.toString()}
-             required
-             id="outlined-required"
+            //  error={this.state.error.toString()}
+
              />
           </div>
           
