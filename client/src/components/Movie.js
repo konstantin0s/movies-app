@@ -16,9 +16,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
 import './css/movie.css';
 import axios from 'axios';
+import Moment from "moment";
 
 
 const Movie = (props) => {
@@ -64,7 +64,7 @@ const Movie = (props) => {
   
     
 
-        const { title, director, image, description, stars, showtimes, _id, likes } = props.movie;
+        const { title, director, image, description, showtimes, _id, likes } = props.movie;
       //  console.log(props.movie)
         return (
             <Card className={classes.root}>
@@ -106,20 +106,8 @@ const Movie = (props) => {
                  onClick={incLikes}>
                   <FavoriteIcon name="movieId" className="icon-button"/>
                 </IconButton>
-                
-                        {/* <Button
-                 onClick={incLikes}
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  size="small"
-                  className="save-btn"
-                  startIcon={
-                     <FavoriteIcon name="movieId" className="icon-button"/>
-                  }
-      >
-    
-      </Button> */}
+
+
               </form>
 
                 Likes: {count ? count : likes}
@@ -144,11 +132,9 @@ const Movie = (props) => {
                   <Typography paragraph>
                    {description}
                   </Typography>
+               
                   <Typography paragraph>
-                  Stars: {" "} {stars}
-                  </Typography>
-                  <Typography paragraph>
-                   Showtimes: {" "} {showtimes}
+                   Showtimes: {" "} {Moment(showtimes).format('YYYY-MM-DD')}
                   </Typography>
    
                 </CardContent>

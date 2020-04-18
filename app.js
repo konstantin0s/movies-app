@@ -12,6 +12,8 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
+//deploy area
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 
 app.use(bodyParser.urlencoded({
@@ -47,6 +49,11 @@ app.use('/', movieP);
 
 //upload router
 app.use('/', require('./routes/upload'));
+
+// Right before your app.listen(), add this: for deploy purposes.
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 
 app.listen(process.env.PORT || 5000, () => {
