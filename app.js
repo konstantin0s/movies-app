@@ -12,14 +12,9 @@ const app = express();
 // app.set('view engine', 'hbs');
 // app.set('views', __dirname + '/views');
 // app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public/build')));
 
-
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-app.use(bodyParser.json());
 
 
 // mongo db atlas - with the thisisthesunrise@gmail.com account
@@ -56,18 +51,23 @@ app.use('/', require('./routes/upload'));
 
 //production mode
 // Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
+// if (process.env.NODE_ENV === 'production') {
+//   // Set static folder
+//   app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// }
 
+app.use(express.static(path.join(__dirname, '../build')))
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+})
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`Server started on port 5000...Happy Surfing`);
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log(`Server started on port ${port} ....Happy Surfing`);
 });
 
 
