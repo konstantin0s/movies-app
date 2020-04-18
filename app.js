@@ -8,14 +8,9 @@ require('dotenv').config();
 
 const app = express();
 
-const { NODE_ENV = 'development' } = process.env;
-const IN_PROD = NODE_ENV === 'production'; 
-
-
-
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
 //deploy area
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/build')));
 
@@ -38,6 +33,10 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
   
+
+  const { NODE_ENV = 'development' } = process.env;
+const IN_PROD = NODE_ENV === 'production'; 
+
 
 
 /* GET home page */
