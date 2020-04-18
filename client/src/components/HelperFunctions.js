@@ -27,3 +27,19 @@ export const movies = newMovie => {
         });
   };
   
+
+//    export const like = (params, movieId) => {
+//   return fetch('/like/', {
+//     method: 'PUT',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       'Authorization': 'Bearer '
+//     },
+//     body: JSON.stringify({movieId :params.movieId})
+//   }).then((response) => {
+//     return response.json()
+//   }).catch((err) => {
+//     console.log(err)
+//   })
+// }

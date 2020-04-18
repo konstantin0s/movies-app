@@ -28,9 +28,23 @@ router.put('/movie/edit/:id', function(req, res, next) {
 //@route Delete Article
 router.delete('/:id', (req, res) => {
   Movies.findById(req.params.id)
- .then(article => article.remove().then(() => res.json({success: true})))
+ .then(movie => movie.remove().then(() => res.json({success: true})))
  .catch(err => res.status(404).json({success: false}));
 });
+
+
+// update likes 
+router.put('/movie/edit/:id/like', (req, res) => {
+  debugger
+  Movies.findByIdAndUpdate(req.params.id, req.body, function (err, movie) {
+    debugger
+    if (err) return next(err);
+    res.json(movie);
+    debugger
+  });
+});
+
+
 
 
 module.exports = router;

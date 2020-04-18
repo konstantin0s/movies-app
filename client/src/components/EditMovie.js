@@ -76,27 +76,27 @@ componentDidMount() {
       .catch(err => console.log(err));
   }
 
-  validate = () => {
+  // validate = () => {
 
-    if (this.state.error === true) {
-         return false;
-     }
-     return true;
-  }
+  //   if (this.state.error === true) {
+  //        return false;
+  //    }
+  //    return true;
+  // }
   
 
  handleSubmit = (e) => {
   e.preventDefault();
 
-  const isValid = this.validate();
+  // const isValid = this.validate();
 
   const { title, director, description, image, stars, showtimes, _id } = this.state.movie;
-  if (isValid) {
+  // if (isValid) {
     axios.put(`/movie/edit/${_id}`, {title, director, description, image, stars, showtimes })
     .then((result) => {
       this.props.history.push(`/one/${_id}`);
     });
-  }
+  // }
 }
 
 
@@ -137,16 +137,13 @@ componentDidMount() {
       > Up
            <input type="file" name="image" className="btn btn-warning addPic"
             onChange={(e) => this.handleFileUpload(e)}
-            error={this.state.error.toString()}
-            required
-            id="outlined-required"
             /> 
       </Button>
             </div> 
           <div>
             <TextField type="text" name="stars" value={stars || ''}
              placeholder="Stars" onChange={this.onChange}
-            //  error={this.state.error.toString()}
+       
 
              />
           </div>

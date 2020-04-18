@@ -149,12 +149,6 @@ return (
                 </Typography>
               </CardContent>
               <CardContent>
-                {/* <Typography gutterBottom variant="h5" component="h2">
-                Stars
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-               {movie.stars}
-                </Typography> */}
 
                 { this.renderStars()} 
               </CardContent>

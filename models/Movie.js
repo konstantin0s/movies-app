@@ -14,6 +14,10 @@ let movieSchema = mongoose.Schema({
     type: Array,
     required: true
   },
+  likes: {
+    type: Number,
+    required: true
+  },
   image: {
     type: String,
     required: true

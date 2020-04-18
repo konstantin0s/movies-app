@@ -25,8 +25,9 @@ let faker = require('faker');
                     actor: faker.name.findName(),
                     description: faker.lorem.sentence(),
                     image: faker.image.image(),
-                    showtimes: Math.round(Math.random() * 9)
-                });
+                    showtimes: Math.round(Math.random() * 9),
+                    likes: Math.round(Math.random() * 9)
+                }); 
             }
             return Movie.create(movies);
         })

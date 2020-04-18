@@ -16,16 +16,22 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
 import './css/movie.css';
+import axios from 'axios';
+
 
 const Movie = (props) => {
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const [count, setCount] = React.useState(0);
+    let [count, setCount] = React.useState(props.movie.likes);
+    let [incCount] = React.useState(0);
 
     const incLikes = () => {
-      let newCount = count + 1;
+    
+      let newCount = props.movie.likes + 1;
+
       if (newCount >= 1) {
         let apath = document.getElementsByClassName('icon-button');
 
@@ -34,27 +40,32 @@ const Movie = (props) => {
         }
 
        }
-      setCount(newCount);
 
+      // setCount(newCount => newCount++);
+      setCount(count => count + 1);
+     console.log(count, incCount, newCount)
     }
   
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
+
+    let handleSubmit = (e) => {
+      e.preventDefault();
+    
+    const { likes, _id } = props.movie;
+    console.log(count, likes, _id);
+        axios.put(`/movie/edit/${_id}/like`, { likes: count })
+        .then((result) => {
+          console.log(result.data)
+        });
+    
+    }
   
-  // const heartClass = () => {
-  //   if (setCount >= 1) {
-  //    let apath = document.querySelector('path');
-  //    apath.backgroundColor = 'red';
-  //    console.log(setCount)
-  //   }
-  // };
+    
 
-
-        // console.log(props.movie);
-
-        const { title, director, image, description, stars, showtimes, _id } = props.movie;
-       
+        const { title, director, image, description, stars, showtimes, _id, likes } = props.movie;
+      //  console.log(props.movie)
         return (
             <Card className={classes.root}>
               <CardHeader
@@ -88,11 +99,30 @@ const Movie = (props) => {
                 </Link>
               </CardContent>
               <CardActions disableSpacing>
-                <IconButton  aria-label="add to favorites" 
+              
+              <form  onSubmit={handleSubmit}>
+              <IconButton  aria-label="add to favorites" 
+                 type="submit"
                  onClick={incLikes}>
-                  <FavoriteIcon className="icon-button"/>
+                  <FavoriteIcon name="movieId" className="icon-button"/>
                 </IconButton>
-                Likes: {count}
+                
+                        {/* <Button
+                 onClick={incLikes}
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  size="small"
+                  className="save-btn"
+                  startIcon={
+                     <FavoriteIcon name="movieId" className="icon-button"/>
+                  }
+      >
+    
+      </Button> */}
+              </form>
+
+                Likes: {count ? count : likes}
 
                 <IconButton aria-label="share">
                   <ShareIcon />
