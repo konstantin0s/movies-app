@@ -9,9 +9,9 @@ require('dotenv').config();
 const app = express();
 
 //deploy area
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
-app.use(express.static(path.join(__dirname, 'public')));
+// app.set('view engine', 'hbs');
+// app.set('views', __dirname + '/views');
+// app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/build')));
 
 
@@ -34,8 +34,8 @@ mongoose
   });
   
 
-  const { NODE_ENV = 'development' } = process.env;
-const IN_PROD = NODE_ENV === 'production'; 
+  const { NODE_ENV = 'production' } = process.env;
+  const IN_PROD = NODE_ENV === 'production'; 
 
 
 
