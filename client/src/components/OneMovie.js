@@ -15,6 +15,7 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import Moment from "moment";
 import './css/onemovie.css';
 
 
@@ -157,7 +158,8 @@ return (
             <CardActions>
         
             <Typography variant="body2" color="textSecondary" component="p">
-                       Showtimes: {" "}   {movie.showtimes}
+                       Showtimes: {" "} 
+                       {Moment(movie.showtimes.dateFrom).format('YYYY-MM-DD')}
             </Typography>
 
             </CardActions>

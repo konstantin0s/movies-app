@@ -9,6 +9,7 @@ import { TextareaAutosize } from '@material-ui/core';
 import './css/formix.css';
 import {handleUpload} from './HelperFunctions';
 import axios from 'axios';
+import Moment from "moment";
 
 
 class EditMovie extends Component {
@@ -165,7 +166,7 @@ componentDidMount() {
   id="date"
   type="text"
   name="showtimes"
-  value={showtimes || ''}
+  value={Moment(showtimes).format('YYYY-MM-DD') || ''}
   className="textFieldx"
 
   inputlabelprops={{
