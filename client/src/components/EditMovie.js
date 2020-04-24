@@ -77,19 +77,11 @@ componentDidMount() {
       .catch(err => console.log(err));
   }
 
-  // validate = () => {
-
-  //   if (this.state.error === true) {
-  //        return false;
-  //    }
-  //    return true;
-  // }
   
 
  handleSubmit = (e) => {
   e.preventDefault();
 
-  // const isValid = this.validate();
 
   const { title, director, description, image, stars, showtimes, _id } = this.state.movie;
   // if (isValid) {

@@ -32,11 +32,6 @@ mongoose
   const { NODE_ENV = 'production' } = process.env;
   const IN_PROD = NODE_ENV === 'production'; 
 
-  //production mode
-app.use(express.static(path.join(__dirname, '../build')))
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-})
 
 
 /* GET home page */
@@ -54,6 +49,22 @@ app.use('/', movieP);
 //upload router
 app.use('/', require('./routes/upload'));
 
+//production mode
+// Serve static assets if in production
+// if (process.env.NODE_ENV === 'production') {
+//   // Set static folder
+//   app.use(express.static('client/build'));
+
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// }
+
+app.use(express.static(path.join(__dirname, './build')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
