@@ -75,7 +75,7 @@
 }
 
 
-input {
+#searchField {
     font-family: 'Inconsolata', monospace;
     position: absolute;
     margin: auto;
@@ -101,31 +101,31 @@ input {
     letter-spacing: 0.1em;
 }
 
-input:hover {
+#searchField:hover {
     cursor: pointer;
 }
 
 
 
-input:focus {
+#searchField:focus {
     width: 500px;
     opacity: 1;
     cursor: text;
 }
 
-input:focus~.search {
+#searchField:focus~.search {
     right: -580px;
     background: #151515;
     z-index: 3;
 }
 
-input:focus~.search::before {
+#searchField:focus~.search::before {
     top: 0;
     left: 0;
     width: 25px;
 }
 
-input:focus~.search::after {
+#searchField:focus~.search::after {
     top: 0;
     left: 0;
     width: 25px;
@@ -136,7 +136,7 @@ input:focus~.search::after {
     transform: rotate(-45deg);
 }
 
-input::placeholder {
+#searchField::placeholder {
     color: white;
     opacity: 0.5;
     z-index: 3;
