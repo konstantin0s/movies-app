@@ -52,7 +52,7 @@
      color: red;
  }
 
- .MuiTypography-root .react-sharing-button__link {
+ .MuiCardContent-root .react-sharing-button__link {
      position: relative;
      left: 0em;
      font-size: 0.6em;

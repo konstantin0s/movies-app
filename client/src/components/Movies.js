@@ -10,7 +10,8 @@ import './css/movies.css';
          this.state = {
              movies: [],
              isLoading: true,
-             searchText: ''
+             searchText: '',
+             term: ''
          }
      }
 

@@ -13,7 +13,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red, blue } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Sharing from './Sharing';
@@ -113,9 +112,9 @@ const Movie = (props) => {
 
                 Likes: {count ? count : likes}
 
-                <Typography aria-label="share">
+                <CardContent aria-label="share">
                   <Sharing />
-                </Typography>
+                </CardContent>
                 <IconButton id="expanding"
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,

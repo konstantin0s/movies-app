@@ -9,12 +9,15 @@ require('dotenv').config();
 const app = express();
 
 //deploy area
-// app.set('view engine', 'hbs');
-// app.set('views', __dirname + '/views');
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/build')));
-
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  }))
 
 
 // mongo db atlas - with the thisisthesunrise@gmail.com account
@@ -29,15 +32,8 @@ mongoose
   });
   
 
-  const { NODE_ENV = 'production' } = process.env;
-  const IN_PROD = NODE_ENV === 'production'; 
-
-
-app.use(express.static('client/build'));
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
-
+  // const { NODE_ENV = 'production' } = process.env;
+  // const IN_PROD = NODE_ENV === 'production'; 
 
 /* GET home page */
 const index = require('./routes/index');
@@ -54,16 +50,21 @@ app.use('/', movieP);
 //upload router
 app.use('/', require('./routes/upload'));
 
-//production mode
-// Serve static assets if in production
-// if (process.env.NODE_ENV === 'production') {
-//   // Set static folder
-//   app.use(express.static('client/build'));
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+//production mode
+app.use(express.static('client/build'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
 
 
 const port = process.env.PORT || 5000;
