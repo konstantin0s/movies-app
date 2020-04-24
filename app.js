@@ -32,6 +32,11 @@ mongoose
   const { NODE_ENV = 'production' } = process.env;
   const IN_PROD = NODE_ENV === 'production'; 
 
+  //production mode
+app.use(express.static(path.join(__dirname, '../build')))
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+})
 
 
 /* GET home page */
@@ -49,11 +54,6 @@ app.use('/', movieP);
 //upload router
 app.use('/', require('./routes/upload'));
 
-//production mode
-app.use(express.static(path.join(__dirname, '../build')))
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
