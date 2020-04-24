@@ -16,6 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Sharing from './Sharing';
 import './css/movie.css';
 import axios from 'axios';
 import Moment from "moment";
@@ -112,9 +113,9 @@ const Movie = (props) => {
 
                 Likes: {count ? count : likes}
 
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
+                <Typography aria-label="share">
+                  <Sharing />
+                </Typography>
                 <IconButton id="expanding"
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,

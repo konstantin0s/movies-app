@@ -16,6 +16,7 @@ import Box from '@material-ui/core/Box';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import Moment from "moment";
+import Sharing from './Sharing';
 import './css/onemovie.css';
 
 
@@ -161,6 +162,10 @@ return (
                        Showtimes: {" "} 
                        {Moment(movie.showtimes.dateFrom).format('YYYY-MM-DD')}
             </Typography>
+
+<Typography>
+  <Sharing id={movie._id}/>
+</Typography>
 
             </CardActions>
             <CardContent>
