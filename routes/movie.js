@@ -7,8 +7,7 @@ router.get('/movie/:id', (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      res.render('movie',
-      {movie: movie});
+    res.json(movie);
     }
     
   });

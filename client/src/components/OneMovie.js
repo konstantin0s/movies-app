@@ -163,9 +163,9 @@ return (
                        {Moment(movie.showtimes.dateFrom).format('YYYY-MM-DD')}
             </Typography>
 
-<Typography>
+<div className="sharing">
   <Sharing id={movie._id}/>
-</Typography>
+</div>
 
             </CardActions>
             <CardContent>

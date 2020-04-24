@@ -46,7 +46,7 @@ router.post('/add', (req, res) => {
     showtimes: req.body.showtimes,
     created: today
   }); 
-  console.log(newMovie)
+  console.log(newMovie);
   debugger
   newMovie.save().then(movie => res.json(movie))
    .catch(err => {

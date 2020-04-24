@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Formix from './Formix';
-import { withRouter } from 'react-router-dom';
 import './css/addmovie.css';
 
  class AddMovie extends Component {
@@ -17,4 +16,4 @@ import './css/addmovie.css';
 }
 
 
-export default withRouter(AddMovie);
+export default AddMovie;
