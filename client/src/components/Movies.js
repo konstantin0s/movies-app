@@ -9,7 +9,8 @@ import './css/movies.css';
          super(props);
          this.state = {
              movies: [],
-             isLoading: true
+             isLoading: true,
+             searchText: ''
          }
      }
 
@@ -33,18 +34,68 @@ import './css/movies.css';
           this.moviesList();
       }
 
+      searchingFor = term => {
+          return (holding) => {
+              return holding.title.includes(term) || !term;
+          }
+      }
+
+      jsUcfirst = str => {
+          return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      onSearchChange = e => {
+          this.setState({
+            searchText: this.jsUcfirst(e.target.value),
+            term: this.jsUcfirst(e.target.value)
+          });
+      }
+
+      handleSubmit = e => {
+          e.preventDefault();
+          this.performSearch(this.query.value);
+          e.currentTarget.reset();
+          this.setState({searchText: ''});
+      }
+
     render() {
-        const { movies, isLoading } = this.state;
+        const { movies, isLoading, searchText, term } = this.state;
 
         return (
-            <div className="movies-container">
+
+            <div>
+                                        
+                <div className="contain-form">
+
+                    <form className="search-form" onSubmit={this.handleSubmit}>
+
+                    <input
+                    onChange={this.onSearchChange}
+                    id="searchField"
+                    type="text"
+                    value={searchText}
+                    autoComplete="true"
+                    ref={input => (this.query = input)}
+                    placeholder="Enter City Name"
+                    aria-label="Search"
+                    />
+
+                    <div className="search"></div>
+                    </form>
+
+                </div>
+
+                <div className="movies-container">
 
                 {  isLoading ? <Loading /> :
-                movies.map((movie) =>   
+                movies.filter(this.searchingFor(term)).map((movie) =>   
                 <Movie key={movie._id} id={movie._id} movie={movie} />
                 )}
-                        
+
+
+                </div>
             </div>
+
         )
     }
 }
