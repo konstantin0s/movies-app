@@ -169,7 +169,6 @@ componentDidMount() {
   name="showtimes"
   value={Moment(showtimes).format('YYYY-MM-DD') || ''}
   className="textFieldx"
-// eslint-disable-next-line
   inputlabelprops={{
     shrink: true,
   }}
