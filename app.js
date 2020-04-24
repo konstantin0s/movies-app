@@ -32,9 +32,6 @@ mongoose
   // const { NODE_ENV = 'production' } = process.env;
   // const IN_PROD = NODE_ENV === 'production'; 
 
-/* GET home page */
-const index = require('./routes/index');
-app.use('/', index);
 
 /*Get movies page */
 const moviesP = require('./routes/movies');
