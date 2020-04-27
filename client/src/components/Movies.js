@@ -3,6 +3,7 @@ import Loading from './Loading';
 import Movie from './Movie';
 import axios from 'axios';
 import './css/movies.css';
+import Autocomplete from 'react-autocomplete';
 
  class Movies extends Component {
      constructor(props) {
@@ -10,8 +11,8 @@ import './css/movies.css';
          this.state = {
              movies: [],
              isLoading: true,
-             searchText: '',
-             term: ''
+             searchText: [],
+             term: []
          }
      }
 
@@ -59,7 +60,36 @@ import './css/movies.css';
           this.setState({searchText: ''});
       }
 
+      selectedText = (value) => {
+          this.setState(() => ({
+              searchText: [],
+              term: value
+          }))
+      }
+
+
+      renderSuggestions = () => {
+        let {movies, term } = this.state;
+        if (term.length === 0) {
+            return null;
+        }
+        return (
+            <ul>
+             { movies.filter(this.searchingFor(term)).map((movie) => (
+                  <li key={movie.id} onClick={() => this.selectedText(movie.title)}>
+                      {movie.title}
+                  </li>
+              ) )}
+            </ul>
+
+        )
+    }
+
+
+
     render() {
+        // console.log(this.state.searchText);
+        // console.log(this.state.term);
         const { movies, isLoading, searchText, term } = this.state;
 
         return (
@@ -80,10 +110,10 @@ import './css/movies.css';
                     placeholder="Enter City Name"
                     aria-label="Search"
                     />
-
+                      {this.renderSuggestions()}
                     <div className="search"></div>
                     </form>
-
+        
                 </div>
 
                 <div className="movies-container">
