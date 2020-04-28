@@ -3,133 +3,130 @@ import Loading from './Loading';
 import Movie from './Movie';
 import axios from 'axios';
 import './css/movies.css';
-import Autocomplete from 'react-autocomplete';
 
- class Movies extends Component {
-     constructor(props) {
-         super(props);
-         this.state = {
-             movies: [],
-             isLoading: true,
-             searchText: [],
-             term: []
-         }
-     }
+class Movies extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      isLoading: true,
+      searchText: [],
+      term: '',
+    };
+  }
 
-     moviesList = () => {
-        this.setState(state => ({ ...state, isLoading: true }));
-    
-        axios
-          .get(`/movies`)
-          .then(res => {
-            const movies = res.data;
-            this.setState({
-                movies: movies,
-              isLoading: false,
-            
-            });
-          })
-          .catch(err => console.log(err));
-      };
+  moviesList = () => {
+    this.setState((state) => ({ ...state, isLoading: true }));
 
-      componentDidMount() {
-          this.moviesList();
-      }
+    axios
+      .get(`/movies`)
+      .then((res) => {
+        const movies = res.data;
+        this.setState({
+          movies: movies,
+          isLoading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
-      searchingFor = term => {
-          return (holding) => {
-              return holding.title.includes(term) || !term;
-          }
-      }
+  componentDidMount() {
+    this.moviesList();
+  }
 
-      jsUcfirst = str => {
-          return str.charAt(0).toUpperCase() + str.slice(1);
-      }
+  searchingFor = (term) => {
+    return (holding) => {
+      return holding.title.includes(term) || !term;
+    };
+  };
 
-      onSearchChange = e => {
-          this.setState({
-            searchText: this.jsUcfirst(e.target.value),
-            term: this.jsUcfirst(e.target.value)
-          });
-      }
+  jsUcfirst = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
 
-      handleSubmit = e => {
-          e.preventDefault();
-          this.performSearch(this.query.value);
-          e.currentTarget.reset();
-          this.setState({searchText: ''});
-      }
+  onSearchChange = (e) => {
+    this.setState({
+      searchText: this.jsUcfirst(e.target.value),
+      term: this.jsUcfirst(e.target.value),
+    });
+    console.log('term', this.state.term);
+    console.log('searchText', this.state.searchText);
+  };
 
-      selectedText = (value) => {
-          this.setState(() => ({
-              searchText: [],
-              term: value
-          }))
-      }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.performSearch(this.query.value);
+    e.currentTarget.reset();
+    this.setState({ searchText: [], term: '' });
+  };
 
+  selectedText = (value) => {
+    this.setState(() => ({
+      term: value,
+      searchText: [],
+    }));
+  };
 
-      renderSuggestions = () => {
-        let {movies, term } = this.state;
-        if (term.length === 0) {
-            return null;
-        }
-        return (
-            <ul>
-             { movies.filter(this.searchingFor(term)).map((movie) => (
-                  <li key={movie.id} onClick={() => this.selectedText(movie.title)}>
-                      {movie.title}
-                  </li>
-              ) )}
-            </ul>
-
-        )
+  renderSuggestions = () => {
+    let { movies, term, searchText } = this.state;
+    if (searchText.length === 0) {
+      return null;
     }
+    return (
+      <ul>
+        {movies.filter(this.searchingFor(term)).map((movie) => (
+          <li key={movie._id} onClick={() => this.selectedText(movie.title)}>
+            {movie.title}
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
+  // clearSuggestion = () => {
+  //     let { term } = this.state;
+  //     if (term.length > 0) {
+  //         this.setState({
+  //             term: []
+  //         })
+  // }
 
+  render() {
+    // console.log(this.state.searchText);
+    // console.log(this.state.term);
+    const { movies, isLoading, searchText, term } = this.state;
 
-    render() {
-        // console.log(this.state.searchText);
-        // console.log(this.state.term);
-        const { movies, isLoading, searchText, term } = this.state;
+    return (
+      <div>
+        <div className="contain-form">
+          <form className="search-form" onSubmit={this.handleSubmit}>
+            <input
+              onChange={this.onSearchChange}
+              id="searchField"
+              type="text"
+              value={searchText}
+              autoComplete="true"
+              ref={(input) => (this.query = input)}
+              placeholder="Enter City Name"
+              aria-label="Search"
+            />
+            {this.renderSuggestions()}
+            <div className="search"></div>
+          </form>
+        </div>
 
-        return (
-
-            <div>
-                                        
-                <div className="contain-form">
-
-                    <form className="search-form" onSubmit={this.handleSubmit}>
-
-                    <input
-                    onChange={this.onSearchChange}
-                    id="searchField"
-                    type="text"
-                    value={searchText}
-                    autoComplete="true"
-                    ref={input => (this.query = input)}
-                    placeholder="Enter City Name"
-                    aria-label="Search"
-                    />
-                      {this.renderSuggestions()}
-                    <div className="search"></div>
-                    </form>
-        
-                </div>
-
-                <div className="movies-container">
-
-                {  isLoading ? <Loading /> :
-                movies.filter(this.searchingFor(term)).map((movie) =>   
-                <Movie key={movie._id} id={movie._id} movie={movie} />
-                )}
-
-
-                </div>
-            </div>
-
-        )
-    }
+        <div className="movies-container">
+          {isLoading ? (
+            <Loading />
+          ) : (
+            movies
+              .filter(this.searchingFor(term))
+              .map((movie) => <Movie key={movie._id} id={movie._id} movie={movie} />)
+          )}
+        </div>
+      </div>
+    );
+  }
 }
-
 
 export default Movies;
