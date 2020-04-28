@@ -107,7 +107,7 @@ class Movies extends Component {
               value={searchText}
               autoComplete="true"
               ref={(input) => (this.query = input)}
-              placeholder="Enter City Name"
+              placeholder="Enter Movie Title"
               aria-label="Search"
             />
             {this.renderSuggestions()}
