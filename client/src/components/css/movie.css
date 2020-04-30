@@ -59,3 +59,8 @@
      width: 60%;
      height: 30px
  }
+
+ .movies-container .react-fancybox .thumbnail img {
+     height: 200px;
+     cursor: pointer;
+ }

@@ -14,192 +14,176 @@ import Loading from './Loading';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
-import Moment from "moment";
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import Moment from 'moment';
 import Sharing from './Sharing';
+import ReactFancyBox from 'react-fancybox';
+import 'react-fancybox/lib/fancybox.css';
 import './css/onemovie.css';
 
-
- class OneMovie extends Component {
-constructor(props) {
+class OneMovie extends Component {
+  constructor(props) {
     super(props);
 
     this.state = {
-        movie: [],
-        isLoading: true
-    }
-}
+      movie: [],
+      isLoading: true,
+    };
+  }
 
   delete = () => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
-          <div className='custom-ui'>
+          <div className="custom-ui">
             <h1>Are you sure</h1>
             <p>You want to delete this file?</p>
+            <Button variant="contained" color="primary" onClick={onClose}>
+              No
+            </Button>
             <Button
-        variant="contained"
-        color="primary"
-             onClick={onClose}>No</Button>
-            <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => {
-          this.handleClickDelete()
-          onClose()
-        }}
-        startIcon={<DeleteIcon />}
-      >
-       Yes, Delete!
-      </Button>
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                this.handleClickDelete();
+                onClose();
+              }}
+              startIcon={<DeleteIcon />}
+            >
+              Yes, Delete!
+            </Button>
           </div>
-        )
-      }
-    })
-
-  }
+        );
+      },
+    });
+  };
 
   handleClickDelete = () => {
-       // console.log(id);
-       axios.delete(`/${this.state.movie._id}`)
-       .then((result) => {
-         this.props.history.push(`/`);
-       });
+    // console.log(id);
+    axios.delete(`/${this.state.movie._id}`).then((result) => {
+      this.props.history.push(`/`);
+    });
+  };
+
+  oneMovie = () => {
+    const { id } = this.props;
+    // console.log(id);
+    this.setState((state) => ({ ...state, isLoading: true }));
+
+    axios
+      .get(`/one/${id}`)
+      .then((res) => {
+        const movie = res.data;
+        // console.log(movie)
+        this.setState({
+          movie: movie,
+          isLoading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  componentDidMount() {
+    this.oneMovie();
   }
 
-  
+  renderStars = () => {
+    const { movie } = this.state;
+    let starx = [];
+    starx = movie.stars.toString();
+    let result = starx.replace(/,/g, '');
 
-  
-      oneMovie = () => {
-        const { id } = this.props;
-        // console.log(id);
-        this.setState(state => ({ ...state, isLoading: true }));
-    
-        axios
-          .get(`/one/${id}`)
-          .then(res => {
-            const movie = res.data;
-            // console.log(movie)
-            this.setState({
-                movie: movie,
-              isLoading: false,
-            
-            });
-          })
-          .catch(err => console.log(err));
-      };
+    for (let i = 0; i < result.length; i++) {
+      return (
+        <Box key={Math.random() * 10 - 1} component="fieldset" mb={3} borderColor="transparent">
+          <Typography component="legend">Stars</Typography>
 
-      componentDidMount() {
-          this.oneMovie();
-      }
+          <Rating name="read-only" precision={0.5} value={parseInt(result[i])} readOnly />
+        </Box>
+      );
+    }
+  };
 
-      renderStars = () => {
-        const { movie } = this.state;
-        let starx = [];
-        starx = movie.stars.toString();
-        let result = starx.replace(/,/g, "");
-      
-        for (let i = 0; i < result.length; i++) {
-       
-return (
- <Box key={Math.random() * 10 - 1} component="fieldset" mb={3} borderColor="transparent">
-    <Typography component="legend">Stars</Typography>
-  
-    <Rating name="read-only" precision={0.5}
-    value={parseInt(result[i])} readOnly />
-    </Box> 
-)
-        }
- }
+  render() {
+    const { movie, isLoading } = this.state;
 
-
-
-    render() {
-
-        const { movie, isLoading} = this.state;
-
-        return (
-            
-      
+    return (
       <div className="text-center">
-           {  isLoading ? <Loading /> : 
-              <Card className="cardex">
-             <CardActionArea>
-            <CardContent className="image-card">
-              <CardMedia
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Card className="cardex">
+            <CardActionArea>
+              <CardContent className="image-card">
+                {/* <CardMedia
                 component="img"
                 alt="Movie"
                 height="400"
                 image={movie.image}
                 title={movie.title}
-              />
-            </CardContent>
-              <CardContent>
+              /> */}
+                <ReactFancyBox thumbnail={movie.image} image={movie.image} />
                 <Typography gutterBottom variant="h5" component="h2">
-                Description
+                  Title:
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-               {movie.description}
+                  {movie.title}
                 </Typography>
               </CardContent>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                Director
+                  Description
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-               {movie.director}
+                  {movie.description}
                 </Typography>
               </CardContent>
               <CardContent>
-
-                { this.renderStars()} 
+                <Typography gutterBottom variant="h5" component="h2">
+                  Director
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {movie.director}
+                </Typography>
               </CardContent>
-
+              <CardContent>{this.renderStars()}</CardContent>
             </CardActionArea>
             <CardActions>
-        
-            <Typography variant="body2" color="textSecondary" component="p">
-                       Showtimes: {" "} 
-                       {Moment(movie.showtimes.dateFrom).format('YYYY-MM-DD')}
-            </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                Showtimes: {Moment(movie.showtimes.dateFrom).format('YYYY-MM-DD')}
+              </Typography>
 
-<div className="sharing">
-  <Sharing id={movie._id}/>
-</div>
-
+              <div className="sharing">
+                <Sharing id={movie._id} />
+              </div>
             </CardActions>
             <CardContent>
-                  <div className="button-container"> 
-                  <Button
-        variant="contained"
-        color="default"
-        startIcon={<EditIcon />}>
-           <Link to={`/edit/${this.state.movie._id}`} className="btn btn-success">Edit</Link>&nbsp;
-           </Button>
-      
+              <div className="button-container">
+                <Button variant="contained" color="default" startIcon={<EditIcon />}>
+                  <Link to={`/edit/${this.state.movie._id}`} className="btn btn-success">
+                    Edit
+                  </Link>
+                  &nbsp;
+                </Button>
 
-          <Button
-        variant="contained"
-        color="secondary"
-        className="btn btn-danger"
-        onClick={() => {
-          this.delete()
-        }}
-        startIcon={<DeleteIcon />}
-      >
-        Delete
-      </Button>
-       </div>
-               </CardContent>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    this.delete();
+                  }}
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
+              </div>
+            </CardContent>
           </Card>
-    }
+        )}
       </div>
-
-
-
-        )
-    }
+    );
+  }
 }
-
 
 export default withRouter(OneMovie);
