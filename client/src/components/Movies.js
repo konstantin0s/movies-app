@@ -49,15 +49,15 @@ class Movies extends Component {
       searchText: this.jsUcfirst(e.target.value),
       term: this.jsUcfirst(e.target.value),
     });
-    console.log('term', this.state.term);
-    console.log('searchText', this.state.searchText);
+    // console.log('term', this.state.term);
+    // console.log('searchText', this.state.searchText);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.performSearch(this.query.value);
     e.currentTarget.reset();
-    this.setState({ searchText: [], term: '' });
+    this.setState({ searchText: [], term: [] });
   };
 
   selectedText = (value) => {
@@ -82,14 +82,6 @@ class Movies extends Component {
       </ul>
     );
   };
-
-  // clearSuggestion = () => {
-  //     let { term } = this.state;
-  //     if (term.length > 0) {
-  //         this.setState({
-  //             term: []
-  //         })
-  // }
 
   render() {
     // console.log(this.state.searchText);
