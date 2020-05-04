@@ -13,13 +13,12 @@
 .contain-form {
     position: relative;
     margin: auto;
-    top: 20px;
+    top: 0px;
     left: 0;
     right: 0;
     width: 500px;
     height: auto;
-    margin-bottom: 150px;
-
+    margin-bottom: 75px;
 }
 
 
