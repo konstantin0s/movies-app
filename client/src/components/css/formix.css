@@ -37,7 +37,7 @@ input[type="file"] {
 
 ::placeholder,
 #date {
-    color: white;
+    color: #333;
     font-weight: bold;
     opacity: 1;
 }

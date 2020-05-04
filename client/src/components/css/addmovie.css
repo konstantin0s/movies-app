@@ -1,19 +1,21 @@
 .add-movie {
-    position: relative;
+    position: absolute;
     width: 100%;
     top: 60px;
     text-align: center;
-    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 80px;
-    margin-bottom: 150px;
+    height: 100%;
+    background: url('https://images.pexels.com/photos/412842/pexels-photo-412842.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500') no-repeat center fixed;
+    background-size: cover;
 }
 
-.add-movie>div {
-    width: 600px;
-    height: 600px;
+.add-movie>div:nth-child(1) {
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
-    background-color: rgb(197, 153, 88);
+    background-color: rgb(253, 240, 220);
+    margin: 100px 0px;
+    color: #333;
 }
