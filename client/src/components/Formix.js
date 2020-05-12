@@ -137,7 +137,7 @@ class Formix extends Component {
                   id="outlined-required"
                 />
               </div>
-              <div>
+              <div className="upload-container">
                 <Button
                   variant="contained"
                   color="default"
@@ -145,7 +145,7 @@ class Formix extends Component {
                   startIcon={<CloudUploadIcon />}
                 >
                   {' '}
-                  Up
+                  Upload
                   <input
                     type="file"
                     name="image"
@@ -159,7 +159,7 @@ class Formix extends Component {
                   helpertext={this.state.helpertext}
                   type="text"
                   name="stars"
-                  placeholder="Stars"
+                  placeholder="1, 2, 5 Stars"
                   onChange={this.onChange}
                   error={this.state.error.toString()}
                   required
@@ -180,6 +180,7 @@ class Formix extends Component {
                   error={this.state.error.toString()}
                   required
                   id="outlined-required"
+                  className="textarea"
                 />
               </div>
 
@@ -206,7 +207,7 @@ class Formix extends Component {
                   variant="contained"
                   color="primary"
                   size="small"
-                  className="save-btn"
+                  className="save-btn upload-button"
                   startIcon={<SaveIcon />}
                 >
                   Save

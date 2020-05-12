@@ -1,17 +1,54 @@
+.containerX>div {
+    height: 3em;
+    margin: 0.5em;
+}
+
 .upload-button {
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
     position: relative;
     top: 13px;
+    width: 80%;
+    height: 2.8em;
+    top: 0.3em;
+    cursor: pointer;
+    font-weight: bold;
 }
-
 
 .upload-button:hover {
     transform: scale(1.1);
-    color: #174db1;
+    color: rgb(250, 223, 72);
     cursor: pointer;
 }
+
+.textarea {
+    position: relative;
+    width: 85%;
+    overflow: hidden;
+    word-wrap: break-word;
+    height: 160px;
+    background-color: #FFF;
+    color: #222;
+    font-family: Courier, monospace;
+    font-weight: normal;
+    resize: none;
+    line-height: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 4px;
+    background-image: url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+    background-repeat: repeat-y, repeat;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 2px 14px #000;
+    box-shadow: 0px 2px 14px #000;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+    margin-bottom: 1em;
+}
+
 
 .cardz .addPic {
     position: relative;
@@ -28,11 +65,28 @@ input[type="file"] {
     left: -1em;
 }
 
+.upload-container {
+    position: relative;
+    margin: 0.5em 0em;
+    height: 3em;
+    width: 100%;
+}
+
+.MuiCardContent-root button:first-of-type {
+    margin-right: 1em;
+}
+
+.MuiCardContent-root button span a {
+    color: #000;
+}
+
+
+
 .containerX {
     display: inline-block;
     position: relative;
     width: 60%;
-    top: 100px;
+    top: 50px;
 }
 
 ::placeholder,
@@ -57,4 +111,10 @@ input[type="file"] {
     color: red;
     font-size: 13px;
     border-bottom: 2px solid thistle;
+}
+
+.save-btn {
+    position: relative;
+    top: 1em;
+    left: 0.6em;
 }
