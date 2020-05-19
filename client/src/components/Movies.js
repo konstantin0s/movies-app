@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import Movie from './Movie';
+import PhotoContainer from './PhotoContainer';
 import axios from 'axios';
 import './css/movies.css';
 
@@ -89,7 +90,8 @@ class Movies extends Component {
     const { movies, isLoading, searchText, term } = this.state;
 
     return (
-      <div>
+      <div className="center-movies">
+        <PhotoContainer />
         <div className="contain-form">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <input

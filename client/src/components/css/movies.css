@@ -1,3 +1,8 @@
+.center-movies {
+    text-align: center;
+    position: relative;
+}
+
 .movies-container {
     position: relative;
     width: 100%;
@@ -6,14 +11,18 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    top: 100px;
+    top: 0px;
     left: 2em;
 }
 
+.movies-container>div {
+    margin: 0 2em;
+}
+
 .contain-form {
-    position: relative;
+    position: absolute;
     margin: auto;
-    top: 0px;
+    top: 180px;
     left: 0;
     right: 0;
     width: 500px;
@@ -174,4 +183,92 @@ ul {
     border-right: none;
     position: relative;
     top: 164px;
+}
+
+@media (min-width: 300px) and (max-width: 550px) {
+
+    .search-form {
+        left: -3em;
+        position: relative;
+    }
+
+    #searchField:focus {
+        width: 300px;
+        opacity: 1;
+        cursor: text;
+    }
+
+    #searchField:focus~.search {
+        right: -290px;
+        background: #151515;
+        z-index: 3;
+    }
+
+    .movies-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 20px;
+        left: 0em;
+        display: inline-block;
+    }
+
+    .movies-container>div {
+        margin-bottom: 2em;
+        display: inline-block;
+    }
+
+    .react-fancybox .box .image-box {
+        width: 330px;
+        height: 330px;
+    }
+
+    .react-fancybox .box .image-box img:not(.close-btn) {
+        width: 300px;
+        height: 308px;
+    }
+}
+
+@media (min-width: 551px) and (max-width: 767px) {
+
+    .movies-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        left: 0em;
+
+    }
+
+    .movies-container>div {
+        margin-bottom: 2em;
+        display: inline-block;
+    }
+
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+    .movies-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        left: 0em;
+
+    }
+
+    .movies-container>div {
+        margin-bottom: 2em;
+    }
+
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    .movies-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        left: 0em;
+
+    }
+
+    .movies-container>div {
+        margin-bottom: 2em;
+    }
+
 }
