@@ -22,7 +22,7 @@
 .contain-form {
     position: absolute;
     margin: auto;
-    top: 180px;
+    top: -280px;
     left: 0;
     right: 0;
     width: 500px;
@@ -264,11 +264,19 @@ ul {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
         left: 0em;
-
     }
 
     .movies-container>div {
         margin-bottom: 2em;
+    }
+
+}
+
+@media only screen and (min-width: 1500px) {
+    .movies-container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+        left: 0em;
     }
 
 }

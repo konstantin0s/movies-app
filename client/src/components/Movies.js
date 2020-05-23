@@ -90,35 +90,37 @@ class Movies extends Component {
     const { movies, isLoading, searchText, term } = this.state;
 
     return (
-      <div className="center-movies">
+      <React.Fragment>
         <PhotoContainer />
-        <div className="contain-form">
-          <form className="search-form" onSubmit={this.handleSubmit}>
-            <input
-              onChange={this.onSearchChange}
-              id="searchField"
-              type="text"
-              value={searchText}
-              autoComplete="true"
-              ref={(input) => (this.query = input)}
-              placeholder="Enter Movie Title"
-              aria-label="Search"
-            />
-            {this.renderSuggestions()}
-            <div className="search"></div>
-          </form>
-        </div>
+        <div className="center-movies">
+          <div className="contain-form">
+            <form className="search-form" onSubmit={this.handleSubmit}>
+              <input
+                onChange={this.onSearchChange}
+                id="searchField"
+                type="text"
+                value={searchText}
+                autoComplete="true"
+                ref={(input) => (this.query = input)}
+                placeholder="Enter Movie Title"
+                aria-label="Search"
+              />
+              {this.renderSuggestions()}
+              <div className="search"></div>
+            </form>
+          </div>
 
-        <div className="movies-container">
-          {isLoading ? (
-            <Loading />
-          ) : (
-            movies
-              .filter(this.searchingFor(term))
-              .map((movie) => <Movie key={movie._id} id={movie._id} movie={movie} />)
-          )}
+          <div className="movies-container">
+            {isLoading ? (
+              <Loading />
+            ) : (
+              movies
+                .filter(this.searchingFor(term))
+                .map((movie) => <Movie key={movie._id} id={movie._id} movie={movie} />)
+            )}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
