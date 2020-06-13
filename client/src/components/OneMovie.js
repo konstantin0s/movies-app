@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link, withRouter } from 'react-router-dom';
@@ -115,13 +114,6 @@ class OneMovie extends Component {
           <Card className="cardex">
             <CardActionArea>
               <CardContent className="image-card">
-                {/* <CardMedia
-                component="img"
-                alt="Movie"
-                height="400"
-                image={movie.image}
-                title={movie.title}
-              /> */}
                 <ReactFancyBox thumbnail={movie.image} image={movie.image} />
                 <Typography gutterBottom variant="h5" component="h2">
                   Title:

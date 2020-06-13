@@ -24,18 +24,49 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyles();
 
+  function changeBackColor() {
+    let buttons = document.querySelectorAll('[name=color]');
+    for (let button of Array.from(buttons)) {
+      button.addEventListener('change', () => {
+        document.body.style.background = button.value;
+      });
+    }
+  }
+
+  function showHide() {
+    let classix = document.querySelector('.change-color');
+    classix.classList.toggle('show');
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <form className="change-color">
+            <label>
+              <input type="radio" onClick={changeBackColor} name="color" value="orange" /> Orange
+            </label>
+            <label>
+              <input type="radio" onClick={changeBackColor} name="color" value="lightgreen" /> Green
+            </label>
+            <label>
+              <input type="radio" onClick={changeBackColor} name="color" value="lightblue" /> Blue
+            </label>
+          </form>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            onClick={showHide}
+            color="inherit"
+            aria-label="menu"
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-           <Link to="/"> MoviePlex</Link>
+            <Link to="/"> MoviePlex</Link>
           </Typography>
           <Button color="inherit">
-          <Link to="/add">Add Movies</Link>
+            <Link to="/add">Add Movies</Link>
           </Button>
         </Toolbar>
       </AppBar>

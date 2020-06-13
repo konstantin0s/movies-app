@@ -10,3 +10,13 @@
 .MuiButton-label a:hover {
     color: rgb(230, 209, 29);
 }
+
+.change-color {
+    display: none;
+}
+
+.show {
+    display: inline-block;
+    position: absolute;
+    left: 63px;
+}

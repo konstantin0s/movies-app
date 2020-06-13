@@ -108,12 +108,7 @@ class Formix extends Component {
                 <TextField
                   helpertext={this.state.helpertext}
                   type="text"
-                  name="director"
-                  placeholder="Director"
-                  // eslint-disable-next-line
-                  type="text"
                   name="title"
-                  // eslint-disable-next-line
                   placeholder="Title"
                   onChange={this.onChange}
                   error={this.state.error.toString()}
